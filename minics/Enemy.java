@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.HashMap;
 
 public class Enemy extends People{
+	
 	public Color color = Color.PINK;
 	public int x_shift;
 	public int y_shift;
@@ -17,7 +18,6 @@ public class Enemy extends People{
 	public Enemy(int x, int y, int value) {
 		this.x = x;
 		this.y = y;
-		this.currentWeapon = "gun";
 		
 		x_shift = 10;
 		y_shift = 10;
@@ -54,6 +54,7 @@ public class Enemy extends People{
 		}
 		else if(ready<=0&&total>0)
 		{
+			//wait for random time
 			reload();
 			return 1;
 		}
@@ -70,23 +71,9 @@ public class Enemy extends People{
 		int bulletAmount = 12; 
 		readyBullet.put(currentWeapon,bulletAmount);
 	}
-	public void buyWeapon(String weapon,int bulletAmount)
-	{
-		if(totalBullet.containsKey(weapon))
-		{
-			int total = bulletAmount  + totalBullet.get(weapon);
-			//readyBullet.put(weapon,bulletAmount);
-			totalBullet.put(weapon,total);
-		}
-		else
-		{
-			readyBullet.put(weapon,bulletAmount);
-			totalBullet.put(weapon,bulletAmount);
-		}
-	}
 	public void die() //override @ mainRole & enemy
 	{
-		//GameOver or knee down
+		//knee down
 	}
 
 	public void moveHorizontal(Boolean b)
@@ -94,13 +81,6 @@ public class Enemy extends People{
 		edit_map(0);
 		
 		x+=b?x_shift:-x_shift;
-		if(x > SmallSmallCS_GO.FRAME_WIDTH*0.5)
-		{
-			x -= x_shift;
-			MainPanel.map_go();
-		}
-		else if(x < SmallSmallCS_GO.FRAME_WIDTH*0.1)
-			x += x_shift;
 	}
 	public void moveVertical(Boolean b)
 	{

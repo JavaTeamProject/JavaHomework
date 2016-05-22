@@ -67,7 +67,7 @@ public class MainRole extends People{
 	}
 	public void waitForReload() //override @ enemy
 	{
-		//wait to do : alert("reload");
+		//wait to do : alert("reload"); --> UI
 		while(readyBullet.get(currentWeapon)<=0)
 		{
 			waitForReload();
@@ -95,7 +95,7 @@ public class MainRole extends People{
 	}
 	public void die() //override @ mainRole & enemy
 	{
-		//GameOver or knee down
+		//GameOver
 	}
 
 	public void moveHorizontal(Boolean b)

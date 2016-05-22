@@ -8,9 +8,9 @@ import java.awt.Graphics;
 
 public class MainPanel extends JPanel{
 	
-	public static final int REFRESH_TIME = 10;	//螢幕刷新時間(ms)
-	public static final int REFLY_TIME = 10;	//子彈移動時間間隔(ms)
-	public static final int PIC_LENGTH = 10;	//地圖單位方塊長度
+	public static final int REFRESH_TIME = 10;	//�撟�����(ms)
+	public static final int REFLY_TIME = 10;	//摮�宏�������(ms)
+	public static final int PIC_LENGTH = 10;	//���雿憛摨�
 	public static final int MAP_WIDTH = (int)(SmallSmallCS_GO.FRAME_WIDTH/PIC_LENGTH);
 	public static final int MAP_HIGHT = (int)(SmallSmallCS_GO.FRAME_HIGHT/PIC_LENGTH);
 	
@@ -18,14 +18,15 @@ public class MainPanel extends JPanel{
 	public static int level;
 	public static long map_go_length;
 	public static People main_role;
-	public static HashSet<People> people_hashset = new HashSet<People>();	//存People物件
-	public static HashSet<People> out_people_hashset = new HashSet<People>();	//存跑出視窗外的People物件
-	public static HashSet<Bullet> bullet_hashset = new HashSet<Bullet>();	//存Bullet物件
-	public static HashSet<Bullet> out_bullet_hashset = new HashSet<Bullet>();	//存跑出視窗外的Bullet物件
-	public static HashSet<Obstacle> obstacle_hashset = new HashSet<Obstacle>();	//存Obstacle物件
-	public static HashSet<Obstacle> out_obstacle_hashset = new HashSet<Obstacle>();	//存跑出視窗外的Obstacle物件
-	public static HashSet<Floor> floor_hashset = new HashSet<Floor>();	//存Floor物件
-	public static HashSet<Floor> out_floor_hashset = new HashSet<Floor>();	//存跑出視窗外的Floor物件
+	public static Enemy enemy;
+	public static HashSet<People> people_hashset = new HashSet<People>();	//摮eople�隞�
+	public static HashSet<People> out_people_hashset = new HashSet<People>();	//摮�閬���eople�隞�
+	public static HashSet<Bullet> bullet_hashset = new HashSet<Bullet>();	//摮ullet�隞�
+	public static HashSet<Bullet> out_bullet_hashset = new HashSet<Bullet>();	//摮�閬���ullet�隞�
+	public static HashSet<Obstacle> obstacle_hashset = new HashSet<Obstacle>();	//摮bstacle�隞�
+	public static HashSet<Obstacle> out_obstacle_hashset = new HashSet<Obstacle>();	//摮�閬���bstacle�隞�
+	public static HashSet<Floor> floor_hashset = new HashSet<Floor>();	//摮loor�隞�
+	public static HashSet<Floor> out_floor_hashset = new HashSet<Floor>();	//摮�閬���loor�隞�
 	
 	public MainPanel() {
 		
@@ -43,7 +44,7 @@ public class MainPanel extends JPanel{
 		setFocusable(true);
 	}
 	
-	//地圖值 [0]:無物品 [1]:主角 [2]:敵人 [3]:障礙物 [4]:地板
+	//����� [0]:����� [1]:銝餉�� [2]:�鈭� [3]:��� [4]:��
 	public void initialMap()
 	{
 		map = new int[MAP_WIDTH][MAP_HIGHT];
@@ -104,29 +105,30 @@ public class MainPanel extends JPanel{
 	
 	public void initialEnemy()
 	{
-		people_hashset.add(new Enemy(700,300,2));
+		enemy = new Enemy(700, 300, 2);
+		people_hashset.add(enemy);
 	}
 	
 	public static void map_go()
 	{
 		map_go_length++;
 		
-		Iterator<Floor> itr0 = floor_hashset.iterator();	//移動地板
+		Iterator<Floor> itr0 = floor_hashset.iterator();	//蝘餃��
 		while(itr0.hasNext()){
 			itr0.next().moveLeft();
 		}
 		
-		Iterator<Obstacle> itr1 = obstacle_hashset.iterator();	//移動障礙物
+		Iterator<Obstacle> itr1 = obstacle_hashset.iterator();	//蝘餃���
 		while(itr1.hasNext()){
 			itr1.next().moveLeft();
 		}
 		
-		Iterator<Bullet> itr2 = bullet_hashset.iterator();	//移動子彈
+		Iterator<Bullet> itr2 = bullet_hashset.iterator();	//蝘餃����
 		while(itr2.hasNext()){
 			itr2.next().moveLeft();
 		}
 		
-		Iterator<People> itr3 = people_hashset.iterator();	//移動人物
+		Iterator<People> itr3 = people_hashset.iterator();	//蝘餃�犖�
 		while(itr3.hasNext()){
 			People tmp = itr3.next();
 			if(tmp.map_value !=1)
@@ -134,7 +136,7 @@ public class MainPanel extends JPanel{
 		}
 		if(map_go_length%2 == 0)
 		{
-			floor_hashset.add(new Floor(((int)SmallSmallCS_GO.FRAME_WIDTH/20)*19, (int)(SmallSmallCS_GO.FRAME_HIGHT*0.75))); //新增地板
+			floor_hashset.add(new Floor(((int)SmallSmallCS_GO.FRAME_WIDTH/20)*19, (int)(SmallSmallCS_GO.FRAME_HIGHT*0.75))); //�憓�
 			
 			level += (int)(Math.random()*3)-1;
 			//System.out.println(level);
@@ -142,7 +144,7 @@ public class MainPanel extends JPanel{
 			level = (level==7)?6:level;
 			for(int j=0 ; j<level*10 ; j+=10)
 			{
-				obstacle_hashset.add(new Obstacle(((int)SmallSmallCS_GO.FRAME_WIDTH/20)*19, (int)(SmallSmallCS_GO.FRAME_HIGHT*0.75)-j-10));	//新增障礙物
+				obstacle_hashset.add(new Obstacle(((int)SmallSmallCS_GO.FRAME_WIDTH/20)*19, (int)(SmallSmallCS_GO.FRAME_HIGHT*0.75)-j-10));	//�憓��
 			}
 		}
 	}
@@ -150,7 +152,7 @@ public class MainPanel extends JPanel{
 	public void paint(Graphics g){
 		super.paint(g);
 		
-		Iterator<Floor> itr0 = floor_hashset.iterator();	//畫地板
+		Iterator<Floor> itr0 = floor_hashset.iterator();	//���
 		while(itr0.hasNext()){
 			Floor tmp = itr0.next();
 			if(tmp.exist == 0)
@@ -158,9 +160,9 @@ public class MainPanel extends JPanel{
 			else
 				tmp.draw(g);
 		}
-		floor_hashset.removeAll(out_floor_hashset);	//移除掉跑出去的地板們
+		floor_hashset.removeAll(out_floor_hashset);	//蝘駁���������
 		
-		Iterator<Obstacle> itr1 = obstacle_hashset.iterator();	//畫障礙物
+		Iterator<Obstacle> itr1 = obstacle_hashset.iterator();	//����
 		while(itr1.hasNext()){
 			Obstacle tmp = itr1.next();
 			if(tmp.exist == 0)
@@ -168,9 +170,9 @@ public class MainPanel extends JPanel{
 			else
 				tmp.draw(g);
 		}
-		obstacle_hashset.removeAll(out_obstacle_hashset);	//移除掉跑出去的障礙物們
+		obstacle_hashset.removeAll(out_obstacle_hashset);	//蝘駁����������
 		
-		Iterator<Bullet> itr2 = bullet_hashset.iterator();	//畫子彈
+		Iterator<Bullet> itr2 = bullet_hashset.iterator();	//�摮��
 		while(itr2.hasNext()){
 			Bullet tmp = itr2.next();
 			if(tmp.exist == 0)
@@ -178,9 +180,9 @@ public class MainPanel extends JPanel{
 			else
 				tmp.draw(g);
 		}
-		bullet_hashset.removeAll(out_bullet_hashset);	//移除掉飛出去的子彈們
+		bullet_hashset.removeAll(out_bullet_hashset);	//蝘駁����������
 		
-		Iterator<People> itr3 = people_hashset.iterator();	//畫人物
+		Iterator<People> itr3 = people_hashset.iterator();	//�鈭箇
 		while(itr3.hasNext()){
 			People tmp = itr3.next();
 			if(tmp.exist == 0)
@@ -188,7 +190,7 @@ public class MainPanel extends JPanel{
 			else
 				tmp.draw(g);
 		}
-		people_hashset.removeAll(out_people_hashset);	//移除掉飛出去的人們
+		people_hashset.removeAll(out_people_hashset);	//蝘駁������犖��
 		
 	}
 

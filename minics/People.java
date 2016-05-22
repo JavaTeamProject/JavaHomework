@@ -70,20 +70,7 @@ public class People extends MapElement{
 		int bulletAmount = 12; 
 		readyBullet.put(currentWeapon,bulletAmount);
 	}
-	public void buyWeapon(String weapon,int bulletAmount)
-	{
-		if(totalBullet.containsKey(weapon))
-		{
-			int total = bulletAmount  + totalBullet.get(weapon);
-			//readyBullet.put(weapon,bulletAmount);
-			totalBullet.put(weapon,total);
-		}
-		else
-		{
-			readyBullet.put(weapon,bulletAmount);
-			totalBullet.put(weapon,bulletAmount);
-		}
-	}
+
 	public void die() //override @ mainRole & enemy
 	{
 		//GameOver or knee down

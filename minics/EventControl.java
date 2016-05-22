@@ -10,10 +10,10 @@ public class EventControl implements KeyListener,MouseListener{
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()){
 						/*case KeyEvent.VK_DOWN:
-							main_role.moveVertical(true);
+							MainPanel.main_role.moveVertical(true);
 							break;
 						case KeyEvent.VK_UP:
-							main_role.moveVertical(false);
+							MainPanel.main_role.moveVertical(false);
 							break;*/
 						case KeyEvent.VK_LEFT:
 							MainPanel.main_role.moveHorizontal(false);
@@ -32,11 +32,19 @@ public class EventControl implements KeyListener,MouseListener{
 	public void actionPerformed(ActionEvent e){}
 	public void mousePressed(MouseEvent event)
 	{
+        if (event.getButton() == MouseEvent.BUTTON1) //left button
+        {
+        	if(MainPanel.main_role.shot()==1)
+    		{
+    			MainPanel.bullet_hashset.add(new Bullet(MainPanel.main_role.x, MainPanel.main_role.y, event.getX()-MainPanel.main_role.x, event.getY()-MainPanel.main_role.y,1));
+    		}
+        }
+        if (event.getButton() == MouseEvent.BUTTON3) //right button
+        {
+        	MainPanel.main_role.reload();
+        }
 		//System.out.println(bullet_hashset.size());
-		if(MainPanel.main_role.shot()==1)
-		{
-			MainPanel.bullet_hashset.add(new Bullet(MainPanel.main_role.x, MainPanel.main_role.y, event.getX()-MainPanel.main_role.x, event.getY()-MainPanel.main_role.y));
-		}
+		
 		//point_hashset.add(new Point(event.getX(), event.getY()));
 		/*System.out.println("-----------------------------------------------------");
 		for(int i = 0;i<MainPanel.MAP_HIGHT;i++)

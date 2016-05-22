@@ -1,7 +1,10 @@
 package minics;
 
 import javax.swing.JFrame;
+
+
 import java.awt.Dimension;
+import java.util.Timer;
 
 public class SmallSmallCS_GO{
 	
@@ -15,15 +18,17 @@ public class SmallSmallCS_GO{
 	public static JFrame frame;
 	
 	public static void main(String[] args) {
+		
 		initialFrame();
 		initialPanel();
 		frame.setVisible(true);
+		
+		Timer timer = new Timer();
+		timer.schedule(new EnemyAction(), 0, 1000);
 	}
-	public static void initialWeapon() {
 	
-	}
-	
-	public static void initialFrame() {
+	public static void initialFrame()
+	{
 		frame = new JFrame();
 		//frame.setUndecorated(true);
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -31,7 +36,8 @@ public class SmallSmallCS_GO{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	public static void initialPanel() {
+	public static void initialPanel()
+	{
 		
 		frame.add(new MainPanel());
 		/*
