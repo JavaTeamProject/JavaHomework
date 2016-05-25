@@ -8,7 +8,7 @@ public class BulletThread extends Thread{
 		{
 			Iterator<Bullet> itr2 = MainPanel.bullet_hashset.iterator();
 			while(itr2.hasNext()){
-				itr2.next().fly();;
+				itr2.next().fly();
 			}
 			try {
 	            Thread.sleep(MainPanel.REFLY_TIME);

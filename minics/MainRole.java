@@ -51,7 +51,6 @@ public class MainRole extends People{
 		{
 			readyBullet.put(currentWeapon,ready-1);
 			totalBullet.put(currentWeapon,total-1);
-			//wait to do:發射子彈
 			return 1;
 		}
 		else if(ready<=0&&total>0)
@@ -61,7 +60,6 @@ public class MainRole extends People{
 		}
 		else
 		{
-			//wait to do : 無法發射子彈
 			return 0;
 		}		
 	}

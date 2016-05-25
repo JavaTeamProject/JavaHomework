@@ -3,6 +3,8 @@ package minics;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.Random;
 
 public class Enemy extends People{
 	
@@ -14,6 +16,8 @@ public class Enemy extends People{
 	private HashMap<String, Integer> readyBullet = new HashMap<String, Integer>();
 	private HashMap<String, Integer> totalBullet = new HashMap<String, Integer>();
 	public int map_value = 2;
+	
+	
 
 	public Enemy(int x, int y, int value) {
 		this.x = x;
@@ -26,6 +30,10 @@ public class Enemy extends People{
 		
 		exist = 1;
 		initWeapon();
+		
+		Timer timer = new Timer();
+		timer.schedule(new EnemyAction(), 0, 100);
+		
 	}
 	public void initWeapon()
 	{
@@ -33,15 +41,15 @@ public class Enemy extends People{
 		readyBullet.put(currentWeapon,12);
 		totalBullet.put(currentWeapon,99999);
 	}
-	public void hit(int atk)
+	public void hit()
 	{
-		hp = hp - atk;
+		hp = hp - 100;
 		if(hp <= 0)
 		{
 			die();
 		}
 	}
-	public int shot() //mouse Event
+	public int shot() 
 	{
 		int ready = readyBullet.get(currentWeapon);
 		int total = totalBullet.get(currentWeapon);
@@ -49,33 +57,38 @@ public class Enemy extends People{
 		{
 			readyBullet.put(currentWeapon,ready-1);
 			totalBullet.put(currentWeapon,total-1);
-			//wait to do:發射子彈
 			return 1;
 		}
 		else if(ready<=0&&total>0)
 		{
 			//wait for random time
+			try{
+				Thread.sleep(5000);
+			}catch(InterruptedException e){
+				e.printStackTrace();
+			}
 			reload();
 			return 1;
 		}
 		else
 		{
-			//wait to do : 無法發射子彈
 			return 0;
 		}		
 	}
 
-	public void reload() //mouse Event
+	public void reload() 
 	{
 		//wait to do : get bulletAmount from weapon shop
 		int bulletAmount = 12; 
 		readyBullet.put(currentWeapon,bulletAmount);
+		
 	}
 	public void die() //override @ mainRole & enemy
 	{
-		//knee down
+		moveInverseVertical(false);
 	}
-
+	
+	
 	public void moveHorizontal(Boolean b)
 	{
 		edit_map(0);
@@ -87,7 +100,36 @@ public class Enemy extends People{
 		edit_map(0);
 		y += b?y_shift:-y_shift;
 	}
+	
+	public void moveInverseVertical(Boolean b){
+		edit_map(0);
+		y += b?-y_shift:y_shift;
+	}
 
+	
+	public static void action(Enemy inputEnemy){
+		int randomNum;
+		Random ran = new Random();
+		randomNum = (ran.nextInt(3)) % 3;
+			
+		switch(randomNum){
+			case 0: //toward to main_role
+				if(inputEnemy.x < MainPanel.main_role.x){
+					inputEnemy.moveHorizontal(true);
+				}
+				else if(inputEnemy.x > MainPanel.main_role.x){
+					inputEnemy.moveHorizontal(false);
+				}
+				else ;
+				break;
+			case 1: //shot
+				MainPanel.bullet_hashset.add(new Bullet(inputEnemy.x, inputEnemy.y, MainPanel.main_role.x-inputEnemy.x, MainPanel.main_role.y-inputEnemy.y,2));
+				break;
+			case 2: //stay
+				break;
+		}
+	}
+	
 	public void draw(Graphics g)
 	{
 		if(MainPanel.map[x/10][y/10+1] != 3 && MainPanel.map[x/10-1][y/10+1] != 3 && MainPanel.map[x/10][y/10+1] != 4 && MainPanel.map[x/10-1][y/10+1] != 4)

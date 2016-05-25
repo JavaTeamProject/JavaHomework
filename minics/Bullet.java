@@ -28,7 +28,7 @@ public class Bullet extends MapElement{
 	public void moveLeft()
 	{
 		x -= map_x_shift;
-		if(x <= 0)	//���嚙踐���蕭蹐蕭嚙�
+		if(x <= 0)
 		{
 			exist = 0;
 		}	

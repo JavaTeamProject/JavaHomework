@@ -3,6 +3,7 @@ package minics;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashMap;
+import java.util.Random;
 
 public class People extends MapElement{
 	public Color color;
@@ -94,7 +95,30 @@ public class People extends MapElement{
 		edit_map(0);
 		y += b?y_shift:-y_shift;
 	}
-
+	
+	public static void action(){
+		int randomNum;
+		Random ran = new Random();
+		randomNum = (ran.nextInt(3)) % 3;
+			
+		switch(randomNum){
+			case 0: //toward to main_role
+				if(MainPanel.enemy.x < MainPanel.main_role.x){
+					MainPanel.enemy.moveHorizontal(true);
+				}
+				else if(MainPanel.enemy.x > MainPanel.main_role.x){
+					MainPanel.enemy.moveHorizontal(false);
+				}
+				else ;
+				break;
+			case 1: //shot
+				MainPanel.bullet_hashset.add(new Bullet(MainPanel.enemy.x, MainPanel.enemy.y, MainPanel.main_role.x-MainPanel.enemy.x, MainPanel.main_role.y-MainPanel.enemy.y,2));
+				break;
+			case 2: //stay
+				break;
+		}
+	}
+	
 	public void draw(Graphics g)
 	{
 		if(MainPanel.map[x/10][y/10+1] != 3 && MainPanel.map[x/10-1][y/10+1] != 3 && MainPanel.map[x/10][y/10+1] != 4 && MainPanel.map[x/10-1][y/10+1] != 4)

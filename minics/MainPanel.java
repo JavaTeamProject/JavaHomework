@@ -5,6 +5,7 @@ import java.util.*;
 import javax.swing.*;
 
 import java.awt.Graphics;
+import java.util.Timer;
 
 public class MainPanel extends JPanel{
 	
@@ -19,6 +20,8 @@ public class MainPanel extends JPanel{
 	public static long map_go_length;
 	public static People main_role;
 	public static Enemy enemy;
+	public static HashSet<Enemy> enemy_hashset = new HashSet<Enemy>();
+	public static HashSet<Enemy> out_enemy_hashset = new HashSet<Enemy>();
 	public static HashSet<People> people_hashset = new HashSet<People>();	//摮eople�隞�
 	public static HashSet<People> out_people_hashset = new HashSet<People>();	//摮�閬���eople�隞�
 	public static HashSet<Bullet> bullet_hashset = new HashSet<Bullet>();	//摮ullet�隞�
@@ -34,6 +37,7 @@ public class MainPanel extends JPanel{
 		initialMap();
 		initialHashSet();
 		initialThread();
+		
 	}
 	
 
@@ -44,7 +48,6 @@ public class MainPanel extends JPanel{
 		setFocusable(true);
 	}
 	
-	//����� [0]:����� [1]:銝餉�� [2]:�鈭� [3]:��� [4]:��
 	public void initialMap()
 	{
 		map = new int[MAP_WIDTH][MAP_HIGHT];
@@ -65,7 +68,7 @@ public class MainPanel extends JPanel{
 		initialObstacle();
 		initialMainRole();
 		initialEnemy();
-		
+		initialEnemy();
 	}
 	public void initialThread()
 	{
@@ -73,6 +76,8 @@ public class MainPanel extends JPanel{
 	    paintThread.start();
 	    Thread bulletThread = new BulletThread();
 	    bulletThread.start();
+	    Thread enemyThread = new EnemyThread();
+	    enemyThread.start();
 	}
 	public void initialFloor()
 	{
@@ -103,10 +108,10 @@ public class MainPanel extends JPanel{
 		people_hashset.add(main_role);
 	}
 	
-	public void initialEnemy()
+	public static void initialEnemy()
 	{
 		enemy = new Enemy(700, 300, 2);
-		people_hashset.add(enemy);
+		enemy_hashset.add(enemy);
 	}
 	
 	public static void map_go()
@@ -132,6 +137,13 @@ public class MainPanel extends JPanel{
 		while(itr3.hasNext()){
 			People tmp = itr3.next();
 			if(tmp.map_value !=1)
+				tmp.moveLeft();
+		}
+		
+		Iterator<Enemy> itr4 = enemy_hashset.iterator();
+		while(itr4.hasNext()){
+			People tmp = itr4.next();
+			if(tmp.map_value !=2)
 				tmp.moveLeft();
 		}
 		if(map_go_length%2 == 0)
@@ -187,6 +199,15 @@ public class MainPanel extends JPanel{
 			People tmp = itr3.next();
 			if(tmp.exist == 0)
 				out_people_hashset.add(tmp);
+			else
+				tmp.draw(g);
+		}
+		
+		Iterator<Enemy> itr4 = enemy_hashset.iterator();	//�鈭箇
+		while(itr4.hasNext()){
+			Enemy tmp = itr4.next();
+			if(tmp.exist == 0)
+				out_enemy_hashset.add(tmp);
 			else
 				tmp.draw(g);
 		}

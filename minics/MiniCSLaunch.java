@@ -2,9 +2,7 @@ package minics;
 
 import javax.swing.JFrame;
 
-
 import java.awt.Dimension;
-import java.util.Timer;
 
 public class SmallSmallCS_GO{
 	
@@ -23,8 +21,6 @@ public class SmallSmallCS_GO{
 		initialPanel();
 		frame.setVisible(true);
 		
-		Timer timer = new Timer();
-		timer.schedule(new EnemyAction(), 0, 1000);
 	}
 	
 	public static void initialFrame()

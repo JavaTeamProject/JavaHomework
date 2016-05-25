@@ -18,14 +18,11 @@ public class EnemyAction extends TimerTask {
 					MainPanel.enemy.moveHorizontal(false);
 				}
 				else ;
-				//System.out.println("0");
 				break;
 			case 1: //shot
 				MainPanel.bullet_hashset.add(new Bullet(MainPanel.enemy.x, MainPanel.enemy.y, MainPanel.main_role.x-MainPanel.enemy.x, MainPanel.main_role.y-MainPanel.enemy.y,2));
-				//System.out.println("1");
 				break;
 			case 2: //stay
-				//System.out.println("2");
 				break;
 		}
 	}
