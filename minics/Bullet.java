@@ -37,15 +37,15 @@ public class Bullet extends MapElement{
 	{
 		x+=x_shift;
 		y+=y_shift;
-		if(x <= 0 || x >= SmallSmallCS_GO.FRAME_WIDTH || y <= 0 || y >= SmallSmallCS_GO.FRAME_HIGHT)	//���嚙踐���蕭蹐蕭嚙�
+		if(x <= 0 || x >= MiniCSLaunch.FRAME_WIDTH || y <= 0 || y >= MiniCSLaunch.FRAME_HIGHT)	//��??��?��??��?��?��?��??����?�蕭蹐?��??��
 		{
 			exist = 0;
 		}	
-		else if(MainPanel.map[(int)(x/10)][(int)(y/10)] == (E==2?1:2) )	//嚙踝蕭���蝞蕭��_Q
+		else if(MainPanel.map[(int)(x/10)][(int)(y/10)] == (E==2?1:2) )	//??��?�蕭���?��??��?��?�蕭��_Q
 		{
 			exist = 0;
 		}
-		else if(MainPanel.map[(int)(x/10)][(int)(y/10)] == 3 || MainPanel.map[(int)(x/10)][(int)(y/10)] == 4)	//嚙踝蕭豯佗蕭��蕭���>嚙踝蕭
+		else if(MainPanel.map[(int)(x/10)][(int)(y/10)] == 3 || MainPanel.map[(int)(x/10)][(int)(y/10)] == 4)	//??��?�蕭豯�?�蕭��?��?����?����??>??��?�蕭
 		{
 			exist = 0;
 		}

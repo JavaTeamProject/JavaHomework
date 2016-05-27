@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 import java.awt.Dimension;
 
-public class SmallSmallCS_GO{
+public class MiniCSLaunch{
 	
 	public static final Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	//public static final double FRAME_WIDTH = (int)(screenSize.getWidth()/10)*10;

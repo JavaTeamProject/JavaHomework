@@ -82,12 +82,12 @@ public class People extends MapElement{
 		edit_map(0);
 		
 		x+=b?x_shift:-x_shift;
-		if(x > SmallSmallCS_GO.FRAME_WIDTH*0.5)
+		if(x > MiniCSLaunch.FRAME_WIDTH*0.5)
 		{
 			x -= x_shift;
 			MainPanel.map_go();
 		}
-		else if(x < SmallSmallCS_GO.FRAME_WIDTH*0.1)
+		else if(x < MiniCSLaunch.FRAME_WIDTH*0.1)
 			x += x_shift;
 	}
 	public void moveVertical(Boolean b)

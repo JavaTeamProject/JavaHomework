@@ -1,3 +1,4 @@
+package minics;
 
 public class Weapon {
 	private int price;
@@ -34,7 +35,7 @@ public class Weapon {
 	public int getExistTime() {
 		return exist_time;
 	}
-	public Boolean isaffordable(int money) {
+	public boolean isaffordable(int money) {
 		if(money >= this.price)
 			return true;
 		else
