@@ -9,9 +9,9 @@ import java.util.Timer;
 
 public class MainPanel extends JPanel{
 	
-	public static final int REFRESH_TIME = 10;	//ï¿½î´¡??Ÿî?Ÿï?˜ï¿½î¡‡ï¿½ï¿½î?œï¿½ï¿?(ms)
-	public static final int REFLY_TIME = 10;	//?‘®??ï¿½??ˆå?ï¿½ï¿½î? ï¿½î¿œï¿½?š©ï¿½îš©ï¿½ï¿½(ms)
-	public static final int PIC_LENGTH = 10;	//ï¿½î¯µï¿½ï¿½î¡¼î?…é›¿??˜î?æ?›ï?„î±?‘¨ï¿?
+	public static final int REFRESH_TIME = 10;	//ï¿½î´¡??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½î¡‡ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½?(ms)
+	public static final int REFLY_TIME = 10;	//?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½î¿œï¿½?ï¿½ï¿½ï¿½îš©ï¿½ï¿½(ms)
+	public static final int PIC_LENGTH = 10;	//ï¿½î¯µï¿½ï¿½î¡¼ï¿½?ï¿½é›¿??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½î±?ï¿½ï¿½ï¿½?
 	public static final int MAP_WIDTH = (int)(MiniCSLaunch.FRAME_WIDTH/PIC_LENGTH);
 	public static final int MAP_HIGHT = (int)(MiniCSLaunch.FRAME_HIGHT/PIC_LENGTH);
 	
@@ -19,10 +19,9 @@ public class MainPanel extends JPanel{
 	public static int level;
 	public static long map_go_length;
 	public static People main_role;
-	public static Enemy enemy;
 	public static HashSet<Enemy> enemy_hashset = new HashSet<Enemy>();
 	public static HashSet<Enemy> out_enemy_hashset = new HashSet<Enemy>();
-	public static HashSet<People> people_hashset = new HashSet<People>();	
+	public static HashSet<People> people_hashset = new HashSet<People>();
 	public static HashSet<People> out_people_hashset = new HashSet<People>();	
 	public static HashSet<Bullet> bullet_hashset = new HashSet<Bullet>();	
 	public static HashSet<Bullet> out_bullet_hashset = new HashSet<Bullet>();	
@@ -67,8 +66,8 @@ public class MainPanel extends JPanel{
 		initialFloor();
 		initialObstacle();
 		initialMainRole();
-		initialEnemy();
-		initialEnemy();
+		/*initialEnemy();
+		initialEnemy();*/
 	}
 	public void initialThread()
 	{
@@ -76,8 +75,11 @@ public class MainPanel extends JPanel{
 	    paintThread.start();
 	    Thread bulletThread = new BulletThread();
 	    bulletThread.start();
-	    Thread enemyThread = new EnemyThread();
-	    enemyThread.start();
+	    Thread enemyCreateThread = new EnemyCreateThread();
+	    enemyCreateThread.start();
+	    Thread enemyActionThread = new EnemyActionThread();
+	    enemyActionThread.start();
+	    
 	}
 	public void initialFloor()
 	{
@@ -110,30 +112,29 @@ public class MainPanel extends JPanel{
 	
 	public static void initialEnemy()
 	{
-		enemy = new Enemy(700, 300, 2);
-		enemy_hashset.add(enemy);
+		enemy_hashset.add(new Enemy((int)(MiniCSLaunch.FRAME_WIDTH*0.9), (int)(MiniCSLaunch.FRAME_WIDTH*0.7), 2));
 	}
 	
 	public static void map_go()
 	{
 		map_go_length++;
 		
-		Iterator<Floor> itr0 = floor_hashset.iterator();	//??˜é?ƒï¿½??Ÿî¯µï¿½î²¡
+		Iterator<Floor> itr0 = floor_hashset.iterator();	//??ï¿½ï¿½?ï¿½ï¿½??ï¿½î¯µï¿½î²¡
 		while(itr0.hasNext()){
 			itr0.next().moveLeft();
 		}
 		
-		Iterator<Obstacle> itr1 = obstacle_hashset.iterator();	//??˜é?ƒï¿½?Ÿ£ï¿½î°¬ï¿½î?•ï§
+		Iterator<Obstacle> itr1 = obstacle_hashset.iterator();	//??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½î°¬ï¿½ï¿½?ï¿½ï§
 		while(itr1.hasNext()){
 			itr1.next().moveLeft();
 		}
 		
-		Iterator<Bullet> itr2 = bullet_hashset.iterator();	//??˜é?ƒï¿½??Ÿï¿½??ï¿½ï¿?
+		Iterator<Bullet> itr2 = bullet_hashset.iterator();	//??ï¿½ï¿½?ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½ï¿½?
 		while(itr2.hasNext()){
 			itr2.next().moveLeft();
 		}
 		
-		Iterator<People> itr3 = people_hashset.iterator();	//??˜é?ƒï¿½??ç?–ï¿½?§
+		Iterator<People> itr3 = people_hashset.iterator();	//??ï¿½ï¿½?ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½
 		while(itr3.hasNext()){
 			People tmp = itr3.next();
 			if(tmp.map_value !=1)
@@ -148,7 +149,7 @@ public class MainPanel extends JPanel{
 		}
 		if(map_go_length%2 == 0)
 		{
-			floor_hashset.add(new Floor(((int)MiniCSLaunch.FRAME_WIDTH/20)*19, (int)(MiniCSLaunch.FRAME_HIGHT*0.75))); //ï¿½î?‡æ?“îµ¤î¯µï¿½î²?
+			floor_hashset.add(new Floor(((int)MiniCSLaunch.FRAME_WIDTH/20)*19, (int)(MiniCSLaunch.FRAME_HIGHT*0.75))); //ï¿½ï¿½?ï¿½ï¿½?ï¿½îµ¤î¯µï¿½ï¿½?
 			
 			level += (int)(Math.random()*3)-1;
 			//System.out.println(level);
@@ -156,7 +157,7 @@ public class MainPanel extends JPanel{
 			level = (level==7)?6:level;
 			for(int j=0 ; j<level*10 ; j+=10)
 			{
-				obstacle_hashset.add(new Obstacle(((int)MiniCSLaunch.FRAME_WIDTH/20)*19, (int)(MiniCSLaunch.FRAME_HIGHT*0.75)-j-10));	//ï¿½î?‡æ?“îµ¨ï¿½î°¬ï¿½î?•ï§
+				obstacle_hashset.add(new Obstacle(((int)MiniCSLaunch.FRAME_WIDTH/20)*19, (int)(MiniCSLaunch.FRAME_HIGHT*0.75)-j-10));	//ï¿½ï¿½?ï¿½ï¿½?ï¿½îµ¨ï¿½î°¬ï¿½ï¿½?ï¿½ï§
 			}
 		}
 	}
@@ -172,7 +173,7 @@ public class MainPanel extends JPanel{
 			else
 				tmp.draw(g);
 		}
-		floor_hashset.removeAll(out_floor_hashset);	//??˜é?î?’ï¿½ï¿½ï¦ï¿½î•«?Š¾ï¿½îªï¿½ï¿½??’î¯µï¿½î²¡ï¿½ï¿½
+		floor_hashset.removeAll(out_floor_hashset);	//??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½ï¦ï¿½î•«?ï¿½ï¿½ï¿½îªï¿½ï¿½??ï¿½î¯µï¿½î²¡ï¿½ï¿½
 		
 		Iterator<Obstacle> itr1 = obstacle_hashset.iterator();	//ï¿½î¥ï¿½ï¿½î°¬ï¿½î©•ï§
 		while(itr1.hasNext()){
@@ -182,9 +183,9 @@ public class MainPanel extends JPanel{
 			else
 				tmp.draw(g);
 		}
-		obstacle_hashset.removeAll(out_obstacle_hashset);	//??˜é?î?’ï¿½ï¿½ï¦ï¿½î•«?Š¾ï¿½îªï¿½ï¿½??–ï¿½î°¬ï¿½î©•ï§ï¿½ï¿½
+		obstacle_hashset.removeAll(out_obstacle_hashset);	//??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½ï¦ï¿½î•«?ï¿½ï¿½ï¿½îªï¿½ï¿½??ï¿½ï¿½î°¬ï¿½î©•ï§ï¿½ï¿½
 		
-		Iterator<Bullet> itr2 = bullet_hashset.iterator();	//ï¿½î¥?‘®??ï¿½ï¿?
+		Iterator<Bullet> itr2 = bullet_hashset.iterator();	//ï¿½î¥?ï¿½ï¿½??ï¿½ï¿½ï¿½?
 		while(itr2.hasNext()){
 			Bullet tmp = itr2.next();
 			if(tmp.exist == 0)
@@ -192,9 +193,9 @@ public class MainPanel extends JPanel{
 			else
 				tmp.draw(g);
 		}
-		bullet_hashset.removeAll(out_bullet_hashset);	//??˜é?î?’ï¿½ï¿½ï§ï¿½î?ïŠ¾ï¿½îªï¿½ï¿½??’ï¿½??ï¿½??†ï¿½ï¿?
+		bullet_hashset.removeAll(out_bullet_hashset);	//??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½ï§ï¿½ï¿½?ï¿½ïŠ¾ï¿½îªï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½??ï¿½ï¿½ï¿½?
 		
-		Iterator<People> itr3 = people_hashset.iterator();	//ï¿½î¥?ˆ­ç®‡ï§
+		Iterator<People> itr3 = people_hashset.iterator();	//ï¿½î¥?ï¿½ï¿½ç®‡ï§
 		while(itr3.hasNext()){
 			People tmp = itr3.next();
 			if(tmp.exist == 0)
@@ -202,8 +203,9 @@ public class MainPanel extends JPanel{
 			else
 				tmp.draw(g);
 		}
+		people_hashset.removeAll(out_people_hashset);
 		
-		Iterator<Enemy> itr4 = enemy_hashset.iterator();	//ï¿½î¥?ˆ­ç®‡ï§
+		Iterator<Enemy> itr4 = enemy_hashset.iterator();	//ï¿½î¥?ï¿½ï¿½ç®‡ï§
 		while(itr4.hasNext()){
 			Enemy tmp = itr4.next();
 			if(tmp.exist == 0)
@@ -211,7 +213,7 @@ public class MainPanel extends JPanel{
 			else
 				tmp.draw(g);
 		}
-		people_hashset.removeAll(out_people_hashset);	//??˜é?î?’ï¿½ï¿½ï§ï¿½î?ïŠ¾ï¿½îªï¿½ï¿½??‘ç?–ï¿½ï¿?
+		enemy_hashset.removeAll(out_enemy_hashset);	//??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½ï§ï¿½ï¿½?ï¿½ïŠ¾ï¿½îªï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½ï¿½?
 		
 	}
 

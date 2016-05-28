@@ -31,9 +31,6 @@ public class Enemy extends People{
 		exist = 1;
 		initWeapon();
 		
-		Timer timer = new Timer();
-		timer.schedule(new EnemyAction(), 0, 100);
-		
 	}
 	public void initWeapon()
 	{
@@ -107,23 +104,23 @@ public class Enemy extends People{
 	}
 
 	
-	public static void action(Enemy inputEnemy){
+	public void action(){
 		int randomNum;
 		Random ran = new Random();
 		randomNum = (ran.nextInt(3)) % 3;
 			
 		switch(randomNum){
 			case 0: //toward to main_role
-				if(inputEnemy.x < MainPanel.main_role.x){
-					inputEnemy.moveHorizontal(true);
+				if(this.x < MainPanel.main_role.x){
+					this.moveHorizontal(true);
 				}
-				else if(inputEnemy.x > MainPanel.main_role.x){
-					inputEnemy.moveHorizontal(false);
+				else if(this.x > MainPanel.main_role.x){
+					this.moveHorizontal(false);
 				}
 				else ;
 				break;
 			case 1: //shot
-				MainPanel.bullet_hashset.add(new Bullet(inputEnemy.x, inputEnemy.y, MainPanel.main_role.x-inputEnemy.x, MainPanel.main_role.y-inputEnemy.y,2));
+				MainPanel.bullet_hashset.add(new Bullet(this.x, this.y, MainPanel.main_role.x-this.x, MainPanel.main_role.y-this.y,2));
 				break;
 			case 2: //stay
 				break;

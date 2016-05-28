@@ -43,7 +43,7 @@ public class People extends MapElement{
 		{
 			readyBullet.put(currentWeapon,ready-1);
 			totalBullet.put(currentWeapon,total-1);
-			//wait to do:µo®g¤l¼u
+			//wait to do:ï¿½oï¿½gï¿½lï¿½u
 			return 1;
 		}
 		else if(ready<=0&&total>0)
@@ -53,7 +53,7 @@ public class People extends MapElement{
 		}
 		else
 		{
-			//wait to do : µLªkµo®g¤l¼u
+			//wait to do : ï¿½Lï¿½kï¿½oï¿½gï¿½lï¿½u
 			return 0;
 		}		
 	}
@@ -96,23 +96,23 @@ public class People extends MapElement{
 		y += b?y_shift:-y_shift;
 	}
 	
-	public static void action(){
+	public void action(){
 		int randomNum;
 		Random ran = new Random();
 		randomNum = (ran.nextInt(3)) % 3;
 			
 		switch(randomNum){
 			case 0: //toward to main_role
-				if(MainPanel.enemy.x < MainPanel.main_role.x){
-					MainPanel.enemy.moveHorizontal(true);
+				if(this.x < MainPanel.main_role.x){
+					this.moveHorizontal(true);
 				}
-				else if(MainPanel.enemy.x > MainPanel.main_role.x){
-					MainPanel.enemy.moveHorizontal(false);
+				else if(this.x > MainPanel.main_role.x){
+					this.moveHorizontal(false);
 				}
 				else ;
 				break;
 			case 1: //shot
-				MainPanel.bullet_hashset.add(new Bullet(MainPanel.enemy.x, MainPanel.enemy.y, MainPanel.main_role.x-MainPanel.enemy.x, MainPanel.main_role.y-MainPanel.enemy.y,2));
+				MainPanel.bullet_hashset.add(new Bullet(this.x, this.y, MainPanel.main_role.x-this.x, MainPanel.main_role.y-this.y,2));
 				break;
 			case 2: //stay
 				break;
