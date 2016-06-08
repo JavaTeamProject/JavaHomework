@@ -27,6 +27,9 @@ public class People extends MapElement{
 		
 		exist = 1;
 	}*/
+	
+	
+	
 	public void hit(int atk)
 	{
 		hp = hp - atk;

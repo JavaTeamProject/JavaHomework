@@ -38,6 +38,15 @@ public class Enemy extends People{
 		readyBullet.put(currentWeapon,12);
 		totalBullet.put(currentWeapon,99999);
 	}
+	public void moveLeft()
+	{
+		edit_map(0);
+		x -= map_x_shift;
+		if(x <= 0)	
+		{
+			exist = 0;
+		}	
+	}
 	public void hit()
 	{
 		hp = hp - 100;

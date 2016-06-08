@@ -37,15 +37,15 @@ public class Bullet extends MapElement{
 	{
 		x+=x_shift;
 		y+=y_shift;
-		if(x <= 0 || x >= MiniCSLaunch.FRAME_WIDTH || y <= 0 || y >= MiniCSLaunch.FRAME_HIGHT)	//ï¿½ï¿½??ƒï¿½?š¡??™å?™è?ï?œï¿½??ï¿½ï¿½î?†è•­è¹ï†¹?•­??™ï¿½
+		if(x <= 0 || x >= MiniCSLaunch.FRAME_WIDTH || y <= 0 || y >= MiniCSLaunch.FRAME_HIGHT)	//fly outside
 		{
 			exist = 0;
 		}	
-		else if(MainPanel.map[(int)(x/10)][(int)(y/10)] == (E==2?1:2) )	//??™è?è•­ï¿½îª°ï¿½ï¿½?•¯??è?î?Œè•­ï¿½ï¿½îªŒ_Q
+		else if(MainPanel.map[(int)(x/10)][(int)(y/10)] == (E==2?1:2) )	//hit people
 		{
 			exist = 0;
 		}
-		else if(MainPanel.map[(int)(x/10)][(int)(y/10)] == 3 || MainPanel.map[(int)(x/10)][(int)(y/10)] == 4)	//??™è?è•­è±¯ä?—è•­ï¿½ï¿½?•§?•­ï¿½ï?“ï¿½ï¿½î??>??™è?è•­
+		else if(MainPanel.map[(int)(x/10)][(int)(y/10)] == 3 || MainPanel.map[(int)(x/10)][(int)(y/10)] == 4)	//hit floor or obstacle
 		{
 			exist = 0;
 		}

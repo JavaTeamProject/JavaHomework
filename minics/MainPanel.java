@@ -9,9 +9,9 @@ import java.util.Timer;
 
 public class MainPanel extends JPanel{
 	
-	public static final int REFRESH_TIME = 10;	//�??��?��?�����?���?(ms)
-	public static final int REFLY_TIME = 10;	//?��??��??��?����?���?�����(ms)
-	public static final int PIC_LENGTH = 10;	//����?�雿??��?��?��?�?���?
+	public static final int REFRESH_TIME = 10;	//refresh time(ms)
+	public static final int REFLY_TIME = 10;	//bullet fly time(ms)
+	public static final int PIC_LENGTH = 10;	//game unit
 	public static final int MAP_WIDTH = (int)(MiniCSLaunch.FRAME_WIDTH/PIC_LENGTH);
 	public static final int MAP_HIGHT = (int)(MiniCSLaunch.FRAME_HIGHT/PIC_LENGTH);
 	
@@ -83,7 +83,7 @@ public class MainPanel extends JPanel{
 	}
 	public void initialFloor()
 	{
-		for(int i=0; i<MiniCSLaunch.FRAME_WIDTH ; i+=20)
+		for(int i=0; i<MiniCSLaunch.FRAME_WIDTH ; i+=10)
 		{
 			floor_hashset.add(new Floor(i, (int)(MiniCSLaunch.FRAME_HIGHT*0.75)));
 		}
@@ -119,7 +119,7 @@ public class MainPanel extends JPanel{
 	{
 		map_go_length++;
 		
-		Iterator<Floor> itr0 = floor_hashset.iterator();	//??��?��??��
+		Iterator<Floor> itr0 = floor_hashset.iterator();	//move floor
 		while(itr0.hasNext()){
 			itr0.next().moveLeft();
 		}
@@ -147,9 +147,11 @@ public class MainPanel extends JPanel{
 			if(tmp.map_value !=2)
 				tmp.moveLeft();
 		}
+		
+		floor_hashset.add(new Floor((int)MiniCSLaunch.FRAME_WIDTH-10, (int)(MiniCSLaunch.FRAME_HIGHT*0.75))); //��?��?���?
+		
 		if(map_go_length%2 == 0)
 		{
-			floor_hashset.add(new Floor(((int)MiniCSLaunch.FRAME_WIDTH/20)*19, (int)(MiniCSLaunch.FRAME_HIGHT*0.75))); //��?��?���?
 			
 			level += (int)(Math.random()*3)-1;
 			//System.out.println(level);
