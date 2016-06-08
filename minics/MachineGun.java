@@ -1,6 +1,10 @@
 package minics;
 public class MachineGun extends Weapon {
-	public MachineGun(int price, int clip_amount, int CD_time, int atk, int bullet_speed, Boolean passthrough, int exist_time) {
-		super(price, clip_amount, CD_time, atk, bullet_speed, passthrough, exist_time);
+	private int price = 1000;
+	private int clip_amount = 30;
+	private int CD_time = 40;
+	private int atk = 2;
+	public MachineGun() {
+		super();
 	}
 }

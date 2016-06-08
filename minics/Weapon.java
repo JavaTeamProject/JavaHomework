@@ -6,16 +6,9 @@ public class Weapon {
 	private int CD_time;
 	private int atk;
 	private int bullet_speed;
-	private Boolean passthrough;
+	private Boolean passthrough = false;
 	private int exist_time;
-	public Weapon(int price, int clip_amount, int CD_time, int atk, int bullet_speed, Boolean passthrough, int exist_time) {
-		this.price = price;
-		this.clip_amount = clip_amount;
-		this.CD_time = CD_time;
-		this.atk = atk;
-		this.bullet_speed = bullet_speed;
-		this.passthrough = passthrough;
-		this.exist_time = exist_time;
+	public Weapon() {
 	}
 	public int getAtk() {
 		return atk;
