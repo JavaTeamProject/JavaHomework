@@ -14,11 +14,7 @@ public class MainRole extends People{
 	private HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
 	private HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
 	public int map_value = 2;
-
 	private int die = 0;
-	public int money = 0;
-	public int kill = 0;
-	public int distance = 0;
 
 	public MainRole(int x, int y, int value) {
 		this.x = x;
@@ -40,30 +36,6 @@ public class MainRole extends People{
 		readyBullet.put(currentWeapon,12);
 		totalBullet.put(currentWeapon,99999);
 	}
-	public void setMoney(int amount)
-	{
-		money += amount;
-	}
-	public void setKill()
-	{
-		kill++;
-	}
-	public void setDistance(int length)
-	{
-		distance += length;
-	}
-	public int getMoney()
-	{
-		return money;
-	}
-	public int getKill()
-	{
-		return kill;
-	}
-	public int getDistance()
-	{
-		return distance;
-	}
 	public void moveLeft()
 	{	
 	}
@@ -75,7 +47,10 @@ public class MainRole extends People{
 			die();
 		}
 	}
-
+	/*public int getAtk()
+	{
+		return currentWeapon.getAtk();
+	}*/
 	public int shot() //mouse Event
 	{
 		int ready = readyBullet.get(currentWeapon);
@@ -126,9 +101,7 @@ public class MainRole extends People{
 	}
 	public void die() //override @ mainRole & enemy
 	{
-		die = 1 ;
-		Timer timer = new Timer();
-		timer.schedule(new Die(),0 ,100);
+		
 	}
 
 	public void moveHorizontal(Boolean b)
@@ -152,16 +125,13 @@ public class MainRole extends People{
 
 	public void draw(Graphics g)
 	{
-		if(die == 0)
+		if(MainPanel.map[x/10][y/10+1] != 3 && MainPanel.map[x/10-1][y/10+1] != 3 && MainPanel.map[x/10][y/10+1] != 4 && MainPanel.map[x/10-1][y/10+1] != 4)
 		{
-			if(MainPanel.map[x/10][y/10+1] != 3 && MainPanel.map[x/10-1][y/10+1] != 3 && MainPanel.map[x/10][y/10+1] != 4 && MainPanel.map[x/10-1][y/10+1] != 4)
-			{
-				moveVertical(true);
-			}
-			else if(MainPanel.map[x/10][y/10] == 3 || MainPanel.map[x/10-1][y/10] == 3)
-			{
-				moveVertical(false);
-			}
+			moveVertical(true);
+		}
+		else if(MainPanel.map[x/10][y/10] == 3 || MainPanel.map[x/10-1][y/10] == 3)
+		{
+			moveVertical(false);
 		}
 		
 		g.setColor(color);
