@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.util.HashMap;
 
 public class MainRole extends People{
-
 	public Color color = Color.BLUE;
 	public int x_shift;
 	public int y_shift;
@@ -84,18 +83,18 @@ public class MainRole extends People{
 		int bulletAmount = 12; 
 		readyBullet.put(currentWeapon,bulletAmount);
 	}
-	public void buyWeapon(Weapon weapon,int bulletAmount)
+	public void buyWeapon(Weapon weapon)
 	{
 		if(totalBullet.containsKey(weapon))
 		{
-			int total = bulletAmount  + totalBullet.get(weapon);
+			int total = weapon.getClipAmount() + totalBullet.get(weapon);
 			//readyBullet.put(weapon,bulletAmount);
 			totalBullet.put(weapon,total);
 		}
 		else
 		{
-			readyBullet.put(weapon,bulletAmount);
-			totalBullet.put(weapon,bulletAmount);
+			readyBullet.put(weapon,weapon.getClipAmount());
+			totalBullet.put(weapon,weapon.getClipAmount());
 		}
 	}
 	public void die() //override @ mainRole & enemy

@@ -3,7 +3,6 @@ package minics;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashMap;
-import java.util.Timer;
 import java.util.Random;
 
 public class Enemy extends People{
@@ -91,7 +90,7 @@ public class Enemy extends People{
 	}
 	public void die() //override @ mainRole & enemy
 	{
-		moveInverseVertical(false);
+		
 	}
 	
 	
@@ -106,12 +105,6 @@ public class Enemy extends People{
 		edit_map(0);
 		y += b?y_shift:-y_shift;
 	}
-	
-	public void moveInverseVertical(Boolean b){
-		edit_map(0);
-		y += b?-y_shift:y_shift;
-	}
-
 	
 	public void action(){
 		int randomNum;

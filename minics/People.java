@@ -3,7 +3,6 @@ package minics;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashMap;
-import java.util.Random;
 
 public class People extends MapElement{
 	public Color color;
