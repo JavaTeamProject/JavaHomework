@@ -10,7 +10,7 @@ public class EventControl implements KeyListener,MouseListener{
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()){
 						case KeyEvent.VK_DOWN:
-							MainPanel.main_role.die();
+							MainPanel.main_role.moveVertical(true);
 							break;
 						/*case KeyEvent.VK_UP:
 							MainPanel.main_role.moveVertical(false);

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Timer;
 
 public class MainRole extends People{
+
+	public static Boolean isDie = false;
 	public Color color = Color.BLUE;
 	public int x_shift;
 	public int y_shift;
@@ -20,6 +22,7 @@ public class MainRole extends People{
 	public int distance = 0;
 	private int reload;
 
+
 	public MainRole(int x, int y, int value) {
 		this.x = x;
 		this.y = y;
@@ -29,9 +32,9 @@ public class MainRole extends People{
 		y_shift = 10;
 		map_x_shift = x_shift;
 		hp = 1000;
-		
+
 		exist = 1;
-		
+
 		initWeapon();
 	}
 	public void initWeapon()
@@ -41,32 +44,8 @@ public class MainRole extends People{
 		totalBullet.put(currentWeapon,99999);
 
 	}
-	public void setMoney(int amount)
-	{
-		money += amount;
-	}
-	public void setKill()
-	{
-		kill++;
-	}
-	public void setDistance(int length)
-	{
-		distance += length;
-	}
-	public int getMoney()
-	{
-		return money;
-	}
-	public int getKill()
-	{
-		return kill;
-	}
-	public int getDistance()
-	{
-		return distance;
-	}
 	public void moveLeft()
-	{	
+	{
 	}
 	public void hit(int atk)
 	{
@@ -76,7 +55,10 @@ public class MainRole extends People{
 			die();
 		}
 	}
-
+	/*public int getAtk()
+	{
+		return currentWeapon.getAtk();
+	}*/
 	public int shot() //mouse Event
 	{
 		int ready = readyBullet.get(currentWeapon);
@@ -85,7 +67,7 @@ public class MainRole extends People{
 		{
 			readyBullet.put(currentWeapon,ready-1);
 			totalBullet.put(currentWeapon,total-1);
-			
+
 			return 1;
 		}
 		/*else if(ready<=0&&total>0)
@@ -97,7 +79,7 @@ public class MainRole extends People{
 		{
 			reload = 1;
 			return 0;
-		}		
+		}
 	}
 	public void reload() //mouse Event
 	{
@@ -130,13 +112,14 @@ public class MainRole extends People{
 	}
 	public void die() //override @ mainRole & enemy
 	{
-
-	}
+		//GameOver
+		isDie = true;
+    }
 
 	public void moveHorizontal(Boolean b)
 	{
 		edit_map(0);
-		
+
 		x+=b?x_shift:-x_shift;
 		if(x > MiniCSLaunch.FRAME_WIDTH*0.5)
 		{
@@ -154,16 +137,15 @@ public class MainRole extends People{
 
 	public void draw(Graphics g)
 	{
-
 		if(MainPanel.map[x/10][y/10+1] != 3 && MainPanel.map[x/10-1][y/10+1] != 3 && MainPanel.map[x/10][y/10+1] != 4 && MainPanel.map[x/10-1][y/10+1] != 4)
 		{
 			moveVertical(true);
 		}
 		else if(MainPanel.map[x/10][y/10] == 3 || MainPanel.map[x/10-1][y/10] == 3)
-		{				
+		{
 			moveVertical(false);
 		}
-		
+
 		g.setColor(color);
 		g.fillOval(x-10,y-30,20,20);
 		g.drawLine(x, y-10, x, y+2);
@@ -175,7 +157,7 @@ public class MainRole extends People{
 			g.drawString("reload!", x-15, y-32);
 		}
 		edit_map(map_value);
-		
+
 	}
 	public void edit_map(int map_value)
 	{

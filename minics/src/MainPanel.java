@@ -136,18 +136,16 @@ public class MainPanel extends JPanel{
 			itr2.next().moveLeft();
 		}
 		
-		Iterator<People> itr3 = people_hashset.iterator();	//??嚙踝蕭?嚙踝蕭??嚙踝蕭?嚙踝蕭?嚙踝蕭
+		/*Iterator<People> itr3 = people_hashset.iterator();	//??嚙踝蕭?嚙踝蕭??嚙踝蕭?嚙踝蕭?嚙踝蕭
 		while(itr3.hasNext()){
 			People tmp = itr3.next();
 			if(tmp.map_value !=1)
 				tmp.moveLeft();
-		}
+		}*/
 		
 		Iterator<Enemy> itr4 = enemy_hashset.iterator();
 		while(itr4.hasNext()){
-			People tmp = itr4.next();
-			if(tmp.map_value !=2)
-				tmp.moveLeft();
+			itr4.next().moveLeft();
 		}
 		floor_hashset.add(new Floor((int)MiniCSLaunch.FRAME_WIDTH-10, (int)(MiniCSLaunch.FRAME_HIGHT*0.75))); //��?��?���?
 

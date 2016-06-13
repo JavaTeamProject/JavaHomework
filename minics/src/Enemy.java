@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Random;
-import java.util.Timer;
 
 public class Enemy extends People{
 	
@@ -92,8 +91,10 @@ public class Enemy extends People{
 	public void die()
 	{
 		die = 1 ;
-		Timer timer = new Timer();
-		timer.schedule(new Die(),0 ,100);
+		/*edit_map(0);
+		exist = 0;*/
+		/*Timer timer = new Timer();
+		timer.schedule(new Die(),0 ,100);*/
 	}
 	
 	
@@ -110,50 +111,75 @@ public class Enemy extends People{
 	}
 	
 	public void action(){
-		int randomNum;
-		Random ran = new Random();
-		randomNum = (ran.nextInt(3)) % 3;
-			
-		switch(randomNum){
-			case 0: //toward to main_role
-				if(this.x < MainPanel.main_role.x){
-					this.moveHorizontal(true);
-				}
-				else if(this.x > MainPanel.main_role.x){
-					this.moveHorizontal(false);
-				}
-				else ;
-				break;
-			case 1: //shot
-    			int atk = getAtk();
-				MainPanel.bullet_hashset.add(new Bullet(this.x, this.y, MainPanel.main_role.x-this.x, MainPanel.main_role.y-this.y,2,atk));
-				break;
-			case 2: //stay
-				break;
+		if(die==0){
+			int randomNum;
+			Random ran = new Random();
+			randomNum = (ran.nextInt(3)) % 3;
+				
+			switch(randomNum){
+				case 0: //toward to main_role
+					if(this.x < MainPanel.main_role.x){
+						this.moveHorizontal(true);
+					}
+					else if(this.x > MainPanel.main_role.x){
+						this.moveHorizontal(false);
+					}
+					else ;
+					break;
+				case 1: //shot
+					int atk = getAtk();
+					MainPanel.bullet_hashset.add(new Bullet(this.x, this.y, MainPanel.main_role.x-this.x, MainPanel.main_role.y-this.y,2,atk));
+					break;
+				case 2: //stay
+					break;
+			}
 		}
 	}
 	
 	public void draw(Graphics g)
 	{
-		if(MainPanel.map[x/10][y/10+1] != 3 && MainPanel.map[x/10-1][y/10+1] != 3 && MainPanel.map[x/10][y/10+1] != 4 && MainPanel.map[x/10-1][y/10+1] != 4)
+		if(die == 0)
 		{
-			moveVertical(true);
+			if(MainPanel.map[x/10][y/10+1] != 3 && MainPanel.map[x/10-1][y/10+1] != 3 && MainPanel.map[x/10][y/10+1] != 4 && MainPanel.map[x/10-1][y/10+1] != 4)
+			{
+				moveVertical(true);
+			}
+			else if(MainPanel.map[x/10][y/10] == 3 || MainPanel.map[x/10-1][y/10] == 3)
+			{
+				moveVertical(false);
+			}
+		
+		
+			g.setColor(color);
+			g.fillOval(x-10,y-30,20,20);
+			g.drawLine(x, y-10, x, y+2);
+			g.drawLine(x, y-8, x+7, y);
+			g.drawLine(x, y-8, x-7, y);
+			g.drawLine(x, y+1, x+7, y+9);
+			g.drawLine(x, y+1, x-7, y+9);
+			
+			edit_map(map_value);
 		}
-		else if(die != 1 && MainPanel.map[x/10][y/10] == 3 || MainPanel.map[x/10-1][y/10] == 3)
+		else if(die==1)
 		{
-			moveVertical(false);
+			g.setColor(color);
+			g.fillOval(x-30,y-10,20,20);
+			g.drawLine(x-10,y, x+5, y);
+			g.drawLine(x+5, y, x+5, y+10);
+			g.drawLine(x+5, y+10, x+10, y+10);
+			g.drawLine(x-5, y, x-5, y+10);
+			
+			edit_map(0);
+			die = -1;
 		}
-		
-		g.setColor(color);
-		g.fillOval(x-10,y-30,20,20);
-		g.drawLine(x, y-10, x, y+2);
-		g.drawLine(x, y-8, x+7, y);
-		g.drawLine(x, y-8, x-7, y);
-		g.drawLine(x, y+1, x+7, y+9);
-		g.drawLine(x, y+1, x-7, y+9);
-		
-		edit_map(map_value);
-		
+		else{
+			g.setColor(color);
+			g.fillOval(x-30,y-10,20,20);
+			g.drawLine(x-10,y, x+5, y);
+			g.drawLine(x+5, y, x+5, y+10);
+			g.drawLine(x+5, y+10, x+10, y+10);
+			g.drawLine(x-5, y, x-5, y+10);
+		}
 	}
 	public void edit_map(int map_value)
 	{
