@@ -1,13 +1,13 @@
 package minics;
 
 public class Weapon {
-	private int price;
-	private int clip_amount;
-	private int CD_time;
-	private int atk;
-	private int bullet_speed;
-	private Boolean passthrough = false;
-	private int exist_time;
+    protected int price;
+    protected int clip_amount;
+    protected int CD_time;
+    protected int atk;
+    protected int bullet_speed;
+    protected Boolean passthrough = false;
+    protected int exist_time;
 	public Weapon() {
 	}
 	public int getAtk() {
@@ -28,10 +28,7 @@ public class Weapon {
 	public int getExistTime() {
 		return exist_time;
 	}
-	public boolean isaffordable(int money) {
-		if(money >= this.price)
-			return true;
-		else
-			return false;
+	public int getPrice() {
+		return price;
 	}
 }
