@@ -14,7 +14,11 @@ public class MainRole extends People{
 	private HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
 	private HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
 	public int map_value = 2;
+
 	private int die = 0;
+	public int money = 0;
+	public int kill = 0;
+	public int distance = 0;
 
 	public MainRole(int x, int y, int value) {
 		this.x = x;
@@ -36,6 +40,30 @@ public class MainRole extends People{
 		readyBullet.put(currentWeapon,12);
 		totalBullet.put(currentWeapon,99999);
 	}
+	public void setMoney(int amount)
+	{
+		money += amount;
+	}
+	public void setKill()
+	{
+		kill++;
+	}
+	public void setDistance(int length)
+	{
+		distance += length;
+	}
+	public int getMoney()
+	{
+		return money;
+	}
+	public int getKill()
+	{
+		return kill;
+	}
+	public int getDistance()
+	{
+		return distance;
+	}
 	public void moveLeft()
 	{	
 	}
@@ -47,10 +75,7 @@ public class MainRole extends People{
 			die();
 		}
 	}
-	/*public int getAtk()
-	{
-		return currentWeapon.getAtk();
-	}*/
+
 	public int shot() //mouse Event
 	{
 		int ready = readyBullet.get(currentWeapon);
