@@ -47,9 +47,9 @@ public class Enemy extends People{
 			exist = 0;
 		}	
 	}
-	public void hit()
+	public void hit(int atk)
 	{
-		hp = hp - 100;
+		hp = hp - atk;
 		if(hp <= 0)
 		{
 			die();
