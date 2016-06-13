@@ -6,7 +6,7 @@ public class PaintThread extends Thread{
 		this.mainPanel = mainPanel;
 	}
 	public void run() {
-		while(true)
+		while(MainRole.isDie == false)
 		{
 			mainPanel.repaint();
 			try {
