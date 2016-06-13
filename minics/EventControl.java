@@ -9,10 +9,10 @@ import java.awt.event.MouseListener;
 public class EventControl implements KeyListener,MouseListener{
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()){
-						/*case KeyEvent.VK_DOWN:
-							MainPanel.main_role.moveVertical(true);
+						case KeyEvent.VK_DOWN:
+							MainPanel.main_role.die();
 							break;
-						case KeyEvent.VK_UP:
+						/*case KeyEvent.VK_UP:
 							MainPanel.main_role.moveVertical(false);
 							break;*/
 						case KeyEvent.VK_LEFT:

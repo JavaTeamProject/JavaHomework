@@ -20,6 +20,7 @@ public class MainPanel extends JPanel{
 	public static int level;
 	public static long map_go_length;
 	public static People main_role;
+	public static Enemy enemy;
 	public static HashSet<Enemy> enemy_hashset = new HashSet<Enemy>();
 	public static HashSet<Enemy> out_enemy_hashset = new HashSet<Enemy>();
 	public static HashSet<People> people_hashset = new HashSet<People>();

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Timer;
 
 public class Enemy extends People{
 	
@@ -15,6 +16,7 @@ public class Enemy extends People{
 	private HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
 	private HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
 	public int map_value = 2;
+	private int die = 0;
 	
 	
 
@@ -90,7 +92,9 @@ public class Enemy extends People{
 	}
 	public void die() //override @ mainRole & enemy
 	{
-		
+		die = 1 ;
+		Timer timer = new Timer();
+		timer.schedule(new Die(),0 ,100);
 	}
 	
 	
@@ -136,7 +140,7 @@ public class Enemy extends People{
 		{
 			moveVertical(true);
 		}
-		else if(MainPanel.map[x/10][y/10] == 3 || MainPanel.map[x/10-1][y/10] == 3)
+		else if(die != 1 && MainPanel.map[x/10][y/10] == 3 || MainPanel.map[x/10-1][y/10] == 3)
 		{
 			moveVertical(false);
 		}

@@ -3,6 +3,7 @@ package minics;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashMap;
+import java.util.Timer;
 
 public class MainRole extends People{
 	public Color color = Color.BLUE;
@@ -13,6 +14,7 @@ public class MainRole extends People{
 	private HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
 	private HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
 	public int map_value = 2;
+	private int die = 0;
 
 	public MainRole(int x, int y, int value) {
 		this.x = x;
@@ -99,8 +101,9 @@ public class MainRole extends People{
 	}
 	public void die() //override @ mainRole & enemy
 	{
-		//GameOver
-		
+		die = 1 ;
+		Timer timer = new Timer();
+		timer.schedule(new Die(),0 ,100);
 	}
 
 	public void moveHorizontal(Boolean b)
@@ -124,13 +127,16 @@ public class MainRole extends People{
 
 	public void draw(Graphics g)
 	{
-		if(MainPanel.map[x/10][y/10+1] != 3 && MainPanel.map[x/10-1][y/10+1] != 3 && MainPanel.map[x/10][y/10+1] != 4 && MainPanel.map[x/10-1][y/10+1] != 4)
+		if(die == 0)
 		{
-			moveVertical(true);
-		}
-		else if(MainPanel.map[x/10][y/10] == 3 || MainPanel.map[x/10-1][y/10] == 3)
-		{
-			moveVertical(false);
+			if(MainPanel.map[x/10][y/10+1] != 3 && MainPanel.map[x/10-1][y/10+1] != 3 && MainPanel.map[x/10][y/10+1] != 4 && MainPanel.map[x/10-1][y/10+1] != 4)
+			{
+				moveVertical(true);
+			}
+			else if(MainPanel.map[x/10][y/10] == 3 || MainPanel.map[x/10-1][y/10] == 3)
+			{
+				moveVertical(false);
+			}
 		}
 		
 		g.setColor(color);
