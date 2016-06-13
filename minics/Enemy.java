@@ -85,12 +85,11 @@ public class Enemy extends People{
 
 	public void reload() 
 	{
-		//wait to do : get bulletAmount from weapon shop
-		int bulletAmount = 12; 
+		int bulletAmount = currentWeapon.getClipAmount(); 
 		readyBullet.put(currentWeapon,bulletAmount);
 		
 	}
-	public void die() //override @ mainRole & enemy
+	public void die()
 	{
 		die = 1 ;
 		Timer timer = new Timer();

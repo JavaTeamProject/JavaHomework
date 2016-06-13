@@ -10,15 +10,15 @@ public class MainRole extends People{
 	public int x_shift;
 	public int y_shift;
 	public int hp;
-	private Weapon currentWeapon;
-	private HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
-	private HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
+	private Weapon currentWeapon ;
+	public HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
+	public HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
 	public int map_value = 2;
 
-	private int die = 0;
 	public int money = 0;
 	public int kill = 0;
 	public int distance = 0;
+	private int reload;
 
 	public MainRole(int x, int y, int value) {
 		this.x = x;
@@ -37,8 +37,9 @@ public class MainRole extends People{
 	public void initWeapon()
 	{
 		currentWeapon = new Gun();
-		readyBullet.put(currentWeapon,12);
+		readyBullet.put(currentWeapon,currentWeapon.getClipAmount());
 		totalBullet.put(currentWeapon,99999);
+
 	}
 	public void setMoney(int amount)
 	{
@@ -84,31 +85,34 @@ public class MainRole extends People{
 		{
 			readyBullet.put(currentWeapon,ready-1);
 			totalBullet.put(currentWeapon,total-1);
+			
 			return 1;
 		}
-		else if(ready<=0&&total>0)
+		/*else if(ready<=0&&total>0)
 		{
-			waitForReload();
-			return 1;
-		}
+			reload = 1;
+			return 0;
+		}*/
 		else
 		{
+			reload = 1;
 			return 0;
 		}		
 	}
-	public void waitForReload() //override @ enemy
-	{
-		//wait to do : alert("reload"); --> UI
-		while(readyBullet.get(currentWeapon)<=0)
-		{
-			waitForReload();
-		}
-	}
 	public void reload() //mouse Event
 	{
-		//wait to do : get bulletAmount from weapon shop
-		int bulletAmount = 12; 
-		readyBullet.put(currentWeapon,bulletAmount);
+		int bulletAmount = currentWeapon.getClipAmount();
+
+		if((currentWeapon instanceof Gun) && totalBullet.get(currentWeapon)<=bulletAmount)
+		{
+			totalBullet.put(currentWeapon,99999);
+		}
+		if(totalBullet.get(currentWeapon)>= bulletAmount)
+		{
+			readyBullet.put(currentWeapon,bulletAmount);
+			reload = 0;
+		}
+
 	}
 	public void buyWeapon(Weapon weapon)
 	{
@@ -126,9 +130,7 @@ public class MainRole extends People{
 	}
 	public void die() //override @ mainRole & enemy
 	{
-		die = 1 ;
-		Timer timer = new Timer();
-		timer.schedule(new Die(),0 ,100);
+
 	}
 
 	public void moveHorizontal(Boolean b)
@@ -152,16 +154,14 @@ public class MainRole extends People{
 
 	public void draw(Graphics g)
 	{
-		if(die == 0)
+
+		if(MainPanel.map[x/10][y/10+1] != 3 && MainPanel.map[x/10-1][y/10+1] != 3 && MainPanel.map[x/10][y/10+1] != 4 && MainPanel.map[x/10-1][y/10+1] != 4)
 		{
-			if(MainPanel.map[x/10][y/10+1] != 3 && MainPanel.map[x/10-1][y/10+1] != 3 && MainPanel.map[x/10][y/10+1] != 4 && MainPanel.map[x/10-1][y/10+1] != 4)
-			{
-				moveVertical(true);
-			}
-			else if(MainPanel.map[x/10][y/10] == 3 || MainPanel.map[x/10-1][y/10] == 3)
-			{
-				moveVertical(false);
-			}
+			moveVertical(true);
+		}
+		else if(MainPanel.map[x/10][y/10] == 3 || MainPanel.map[x/10-1][y/10] == 3)
+		{				
+			moveVertical(false);
 		}
 		
 		g.setColor(color);
@@ -171,7 +171,9 @@ public class MainRole extends People{
 		g.drawLine(x, y-8, x-7, y);
 		g.drawLine(x, y+1, x+7, y+9);
 		g.drawLine(x, y+1, x-7, y+9);
-		
+		if(reload!=0){
+			g.drawString("reload!", x-15, y-32);
+		}
 		edit_map(map_value);
 		
 	}

@@ -1,6 +1,6 @@
 package minics;
 
-public class ShotGun {
+public class ShotGun extends Weapon {
 	private int price = 1500;
 	private int clip_amount = 15;
 	private int CD_time = 500;

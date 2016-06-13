@@ -16,7 +16,7 @@ public class EnemyCreateThread extends Thread {
 				MainPanel.enemy_hashset.add(new Enemy((int)(MiniCSLaunch.FRAME_WIDTH*0.1), (int)(MiniCSLaunch.FRAME_WIDTH*0.5), 2));
 			
 			try {
-	            Thread.sleep(randomNum * 100);
+	            Thread.sleep(randomNum * 1000);
 	        } catch (InterruptedException e) {e.printStackTrace();}
 		}
 	}

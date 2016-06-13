@@ -12,7 +12,7 @@ public class People extends MapElement{
 	private Weapon currentWeapon = new Gun();
 	private HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
 	private HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
-	
+	//private int reload = 0 ;
 	/*public People(int x,int y,int map_value)
 	{
 		this.x = x;
@@ -48,42 +48,34 @@ public class People extends MapElement{
 	}
 	public int shot() //mouse Event
 	{
-		int ready = readyBullet.get(currentWeapon);
+		/*int ready = readyBullet.get(currentWeapon);
 		int total = totalBullet.get(currentWeapon);
 		if(ready>0)
 		{
 			readyBullet.put(currentWeapon,ready-1);
 			totalBullet.put(currentWeapon,total-1);
-			//wait to do:�o�g�l�u
 			return 1;
 		}
 		else if(ready<=0&&total>0)
 		{
-			waitForReload();
-			return 0;
+			reload = 1;
+			return 1;
 		}
 		else
 		{
-			//wait to do : �L�k�o�g�l�u
+			reload = 1;
 			return 0;
-		}		
-	}
-	public void waitForReload() //override @ enemy
-	{
-		//wait to do : alert("reload");
-		while(readyBullet.get(currentWeapon)<=0)
-		{
-			waitForReload();
-		}
+		}*/
+		return 1;
 	}
 	public void reload() //mouse Event
 	{
-		//wait to do : get bulletAmount from weapon shop
-		int bulletAmount = 12; 
+		/*int bulletAmount = currentWeapon.getClipAmount(); 
 		readyBullet.put(currentWeapon,bulletAmount);
+		reload = 0;*/
 	}
 
-	public void die() //override @ mainRole & enemy
+	public void die()
 	{
 		//GameOver or knee down
 	}
