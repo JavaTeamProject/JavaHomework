@@ -6,11 +6,8 @@ import java.util.HashMap;
 import java.util.Timer;
 
 public class MainRole extends People{
-<<<<<<< HEAD
 
 	public static Boolean isDie = false;
-=======
->>>>>>> 0fd0b96eec5860626ae9e48f34177c3e79f71002
 	public Color color = Color.BLUE;
 	public int x_shift;
 	public int y_shift;
@@ -131,14 +128,11 @@ public class MainRole extends People{
 	}
 	public void die() //override @ mainRole & enemy
 	{
-<<<<<<< HEAD
 		//GameOver
 		isDie = true;
-=======
 		die = 1 ;
 		Timer timer = new Timer();
 		timer.schedule(new Die(),0 ,100);
->>>>>>> 0fd0b96eec5860626ae9e48f34177c3e79f71002
 	}
 
 	public void moveHorizontal(Boolean b)

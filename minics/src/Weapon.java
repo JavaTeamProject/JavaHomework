@@ -28,10 +28,7 @@ public class Weapon {
 	public int getExistTime() {
 		return exist_time;
 	}
-	public boolean isaffordable(int money) {
-		if(money >= this.price)
-			return true;
-		else
-			return false;
+	public int getPrice() {
+		return price;
 	}
 }
