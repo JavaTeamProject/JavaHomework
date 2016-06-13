@@ -18,16 +18,16 @@ public class Floor extends MapElement{
 	public void draw(Graphics g)
 	{
 		g.setColor(Color.GREEN);
-		g.drawLine(x, y, x+20, y);
+		g.drawLine(x, y, x+9, y);
 		g.setColor(new Color(125, 102, 66));
-		g.fillRect(x, y+1, 20, (int)(MiniCSLaunch.FRAME_HIGHT*0.25)-2);
+		g.fillRect(x, y+1, 10, (int)(MiniCSLaunch.FRAME_HIGHT*0.25)-2);
 		
 		
 		edit_map(map_value);
 	}
 	public void edit_map(int map_value)
 	{
-		for(int i=0;i<2;i++)
+		for(int i=0;i<1;i++)
 			for(int j=0 ; j<6 ;j++)
 			MainPanel.map[x/10+i][y/10+j] = map_value;
 	}

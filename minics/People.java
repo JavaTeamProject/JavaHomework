@@ -35,6 +35,9 @@ public class People extends MapElement{
 		readyBullet.put(currentWeapon,12);
 		totalBullet.put(currentWeapon,99999);
 	}*/
+	
+	
+	
 	public void hit(int atk)
 	{
 		hp = hp - atk;

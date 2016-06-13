@@ -14,7 +14,7 @@ public class MapElement{
 	{
 		edit_map(0);
 		x -= map_x_shift;
-		if(x <= 0)	
+		if(x < 0)	
 		{
 			exist = 0;
 		}	

@@ -35,6 +35,9 @@ public class MainRole extends People{
 		readyBullet.put(currentWeapon,12);
 		totalBullet.put(currentWeapon,99999);
 	}
+	public void moveLeft()
+	{	
+	}
 	public void hit(int atk)
 	{
 		hp = hp - atk;
