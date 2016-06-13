@@ -1,11 +1,11 @@
 package minics;
 
 public class ShotGun {
-	private int price = 1500;
-	private int clip_amount = 15;
-	private int CD_time = 500;
-	private int atk = 4;
 	public ShotGun() {
+        price = 1500;
+        clip_amount = 15;
+        CD_time = 500;
+        atk = 4;
 		super();
 	}
 }
