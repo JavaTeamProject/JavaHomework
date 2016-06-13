@@ -13,7 +13,7 @@ public class Bullet extends MapElement{
 	public int atk;
 	public int E;
 	
-	public Bullet(int x,int y,int x_vector, int y_vector,int E)
+	public Bullet(int x,int y,int x_vector, int y_vector,int E,int atk)
 	{
 		this.x = x;
 		this.y = y;
@@ -23,6 +23,7 @@ public class Bullet extends MapElement{
 		
 		this.exist = 1;
 		this.E = E;
+		this.atk = atk;
 	}
 	
 	public void moveLeft()
@@ -43,6 +44,7 @@ public class Bullet extends MapElement{
 		}	
 		else if(MainPanel.map[(int)(x/10)][(int)(y/10)] == (E==2?1:2) )	//??™è?è•­ï¿½îª°ï¿½ï¿½?•¯??Žè?žî?Œè•­ï¿½ï¿½îªŒ_Q
 		{
+			//MainPanel.
 			exist = 0;
 		}
 		else if(MainPanel.map[(int)(x/10)][(int)(y/10)] == 3 || MainPanel.map[(int)(x/10)][(int)(y/10)] == 4)	//??™è?è•­è±¯ä?—è•­ï¿½ï¿½?•§?•­ï¿½ï?“ï¿½ï¿½î??>??™è?è•­

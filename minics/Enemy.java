@@ -12,9 +12,9 @@ public class Enemy extends People{
 	public int x_shift;
 	public int y_shift;
 	public int hp;
-	private String currentWeapon;
-	private HashMap<String, Integer> readyBullet = new HashMap<String, Integer>();
-	private HashMap<String, Integer> totalBullet = new HashMap<String, Integer>();
+	private Weapon currentWeapon;
+	private HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
+	private HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
 	public int map_value = 2;
 	
 	
@@ -34,7 +34,7 @@ public class Enemy extends People{
 	}
 	public void initWeapon()
 	{
-		currentWeapon = "gun";
+		currentWeapon = new Gun();
 		readyBullet.put(currentWeapon,12);
 		totalBullet.put(currentWeapon,99999);
 	}
@@ -120,7 +120,8 @@ public class Enemy extends People{
 				else ;
 				break;
 			case 1: //shot
-				MainPanel.bullet_hashset.add(new Bullet(this.x, this.y, MainPanel.main_role.x-this.x, MainPanel.main_role.y-this.y,2));
+    			int atk = getAtk();
+				MainPanel.bullet_hashset.add(new Bullet(this.x, this.y, MainPanel.main_role.x-this.x, MainPanel.main_role.y-this.y,2,atk));
 				break;
 			case 2: //stay
 				break;

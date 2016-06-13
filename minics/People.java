@@ -10,9 +10,9 @@ public class People extends MapElement{
 	public int x_shift;
 	public int y_shift;
 	public int hp;
-	public String currentWeapon;
-	public HashMap<String, Integer> readyBullet;
-	public HashMap<String, Integer> totalBullet;
+	private Weapon currentWeapon = new Gun();
+	private HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
+	private HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
 	
 	/*public People(int x,int y,int map_value)
 	{
@@ -26,6 +26,14 @@ public class People extends MapElement{
 		hp = (map_value==1)?1000:100;
 		
 		exist = 1;
+		initWeapon();
+	}
+
+	public void initWeapon()
+	{
+		currentWeapon = new Gun();
+		readyBullet.put(currentWeapon,12);
+		totalBullet.put(currentWeapon,99999);
 	}*/
 	public void hit(int atk)
 	{
@@ -34,6 +42,10 @@ public class People extends MapElement{
 		{
 			die();
 		}
+	}
+	public int getAtk()
+	{
+		return currentWeapon.getAtk();
 	}
 	public int shot() //mouse Event
 	{
@@ -96,7 +108,7 @@ public class People extends MapElement{
 		y += b?y_shift:-y_shift;
 	}
 	
-	public void action(){
+	/*public void action(){
 		int randomNum;
 		Random ran = new Random();
 		randomNum = (ran.nextInt(3)) % 3;
@@ -112,12 +124,12 @@ public class People extends MapElement{
 				else ;
 				break;
 			case 1: //shot
-				MainPanel.bullet_hashset.add(new Bullet(this.x, this.y, MainPanel.main_role.x-this.x, MainPanel.main_role.y-this.y,2));
+				MainPanel.bullet_hashset.add(new Bullet(this.x, this.y, MainPanel.main_role.x-this.x, MainPanel.main_role.y-this.y,2,));
 				break;
 			case 2: //stay
 				break;
 		}
-	}
+	}*/
 	
 	public void draw(Graphics g)
 	{

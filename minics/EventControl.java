@@ -36,7 +36,8 @@ public class EventControl implements KeyListener,MouseListener{
         {
         	if(MainPanel.main_role.shot()==1)
     		{
-    			MainPanel.bullet_hashset.add(new Bullet(MainPanel.main_role.x, MainPanel.main_role.y, event.getX()-MainPanel.main_role.x, event.getY()-MainPanel.main_role.y,1));
+    			int atk = MainPanel.main_role.getAtk();
+        		MainPanel.bullet_hashset.add(new Bullet(MainPanel.main_role.x, MainPanel.main_role.y, event.getX()-MainPanel.main_role.x, event.getY()-MainPanel.main_role.y,1,atk));
     		}
         }
         if (event.getButton() == MouseEvent.BUTTON3) //right button

@@ -10,9 +10,9 @@ public class MainRole extends People{
 	public int x_shift;
 	public int y_shift;
 	public int hp;
-	private String currentWeapon;
-	private HashMap<String, Integer> readyBullet = new HashMap<String, Integer>();
-	private HashMap<String, Integer> totalBullet = new HashMap<String, Integer>();
+	private Weapon currentWeapon;
+	private HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
+	private HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
 	public int map_value = 2;
 
 	public MainRole(int x, int y, int value) {
@@ -31,7 +31,7 @@ public class MainRole extends People{
 	}
 	public void initWeapon()
 	{
-		currentWeapon = "gun";
+		currentWeapon = new Gun();
 		readyBullet.put(currentWeapon,12);
 		totalBullet.put(currentWeapon,99999);
 	}
@@ -43,6 +43,10 @@ public class MainRole extends People{
 			die();
 		}
 	}
+	/*public int getAtk()
+	{
+		return currentWeapon.getAtk();
+	}*/
 	public int shot() //mouse Event
 	{
 		int ready = readyBullet.get(currentWeapon);
@@ -77,7 +81,7 @@ public class MainRole extends People{
 		int bulletAmount = 12; 
 		readyBullet.put(currentWeapon,bulletAmount);
 	}
-	public void buyWeapon(String weapon,int bulletAmount)
+	public void buyWeapon(Weapon weapon,int bulletAmount)
 	{
 		if(totalBullet.containsKey(weapon))
 		{
@@ -94,6 +98,7 @@ public class MainRole extends People{
 	public void die() //override @ mainRole & enemy
 	{
 		//GameOver
+		
 	}
 
 	public void moveHorizontal(Boolean b)
