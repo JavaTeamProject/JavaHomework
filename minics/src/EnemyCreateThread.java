@@ -1,7 +1,5 @@
 package minics;
 
-import java.util.TimerTask;
-import java.util.Iterator;
 import java.util.Random;
 
 public class EnemyCreateThread extends Thread {

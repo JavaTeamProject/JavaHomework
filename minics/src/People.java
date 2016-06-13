@@ -3,59 +3,50 @@ package minics;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.HashMap;
-import java.util.Timer;
-import java.util.Random;
 
-public class Enemy extends People{
-	
-	public Color color = Color.PINK;
+public class People extends MapElement{
+	public Color color;
 	public int x_shift;
 	public int y_shift;
 	public int hp;
-	private Weapon currentWeapon;
+	private Weapon currentWeapon = new Gun();
 	private HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
 	private HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
-	public int map_value = 2;
 	
-	
-
-	public Enemy(int x, int y, int value) {
+	/*public People(int x,int y,int map_value)
+	{
 		this.x = x;
 		this.y = y;
-		
+		this.map_value = map_value;
+
 		x_shift = 10;
 		y_shift = 10;
 		map_x_shift = x_shift;
-		hp = 100;
+		hp = (map_value==1)?1000:100;
 		
 		exist = 1;
 		initWeapon();
-		
 	}
+
 	public void initWeapon()
 	{
 		currentWeapon = new Gun();
 		readyBullet.put(currentWeapon,12);
 		totalBullet.put(currentWeapon,99999);
-	}
-	public void moveLeft()
+	}*/
+	public void hit(int atk)
 	{
-		edit_map(0);
-		x -= map_x_shift;
-		if(x <= 0)	
-		{
-			exist = 0;
-		}	
-	}
-	public void hit()
-	{
-		hp = hp - 100;
+		hp = hp - atk;
 		if(hp <= 0)
 		{
 			die();
 		}
 	}
-	public int shot() 
+	public int getAtk()
+	{
+		return currentWeapon.getAtk();
+	}
+	public int shot() //mouse Event
 	{
 		int ready = readyBullet.get(currentWeapon);
 		int total = totalBullet.get(currentWeapon);
@@ -63,43 +54,52 @@ public class Enemy extends People{
 		{
 			readyBullet.put(currentWeapon,ready-1);
 			totalBullet.put(currentWeapon,total-1);
+			//wait to do:�o�g�l�u
 			return 1;
 		}
 		else if(ready<=0&&total>0)
 		{
-			//wait for random time
-			try{
-				Thread.sleep(5000);
-			}catch(InterruptedException e){
-				e.printStackTrace();
-			}
-			reload();
-			return 1;
+			waitForReload();
+			return 0;
 		}
 		else
 		{
+			//wait to do : �L�k�o�g�l�u
 			return 0;
 		}		
 	}
-
-	public void reload() 
+	public void waitForReload() //override @ enemy
+	{
+		//wait to do : alert("reload");
+		while(readyBullet.get(currentWeapon)<=0)
+		{
+			waitForReload();
+		}
+	}
+	public void reload() //mouse Event
 	{
 		//wait to do : get bulletAmount from weapon shop
 		int bulletAmount = 12; 
 		readyBullet.put(currentWeapon,bulletAmount);
-		
 	}
+
 	public void die() //override @ mainRole & enemy
 	{
-		moveInverseVertical(false);
+		//GameOver or knee down
 	}
-	
-	
+
 	public void moveHorizontal(Boolean b)
 	{
 		edit_map(0);
 		
 		x+=b?x_shift:-x_shift;
+		if(x > MiniCSLaunch.FRAME_WIDTH*0.5)
+		{
+			x -= x_shift;
+			MainPanel.map_go();
+		}
+		else if(x < MiniCSLaunch.FRAME_WIDTH*0.1)
+			x += x_shift;
 	}
 	public void moveVertical(Boolean b)
 	{
@@ -107,13 +107,7 @@ public class Enemy extends People{
 		y += b?y_shift:-y_shift;
 	}
 	
-	public void moveInverseVertical(Boolean b){
-		edit_map(0);
-		y += b?-y_shift:y_shift;
-	}
-
-	
-	public void action(){
+	/*public void action(){
 		int randomNum;
 		Random ran = new Random();
 		randomNum = (ran.nextInt(3)) % 3;
@@ -129,13 +123,12 @@ public class Enemy extends People{
 				else ;
 				break;
 			case 1: //shot
-    			int atk = getAtk();
-				MainPanel.bullet_hashset.add(new Bullet(this.x, this.y, MainPanel.main_role.x-this.x, MainPanel.main_role.y-this.y,2,atk));
+				MainPanel.bullet_hashset.add(new Bullet(this.x, this.y, MainPanel.main_role.x-this.x, MainPanel.main_role.y-this.y,2,));
 				break;
 			case 2: //stay
 				break;
 		}
-	}
+	}*/
 	
 	public void draw(Graphics g)
 	{
