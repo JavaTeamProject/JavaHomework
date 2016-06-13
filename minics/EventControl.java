@@ -47,7 +47,7 @@ public class EventControl implements KeyListener,MouseListener{
 		//System.out.println(bullet_hashset.size());
 		
 		//point_hashset.add(new Point(event.getX(), event.getY()));
-		System.out.println("-----------------------------------------------------");
+		/*System.out.println("-----------------------------------------------------");
 		for(int i = 0;i<MainPanel.MAP_HIGHT;i++)
 		{
 			for(int j = 0; j<MainPanel.MAP_WIDTH ; j++)
@@ -55,7 +55,7 @@ public class EventControl implements KeyListener,MouseListener{
 				System.out.print(MainPanel.map[j][i]);
 			}
 			System.out.println();
-		}
+		}*/
 	}
 
 	public void mouseReleased(MouseEvent event){}
