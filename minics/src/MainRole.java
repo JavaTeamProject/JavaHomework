@@ -12,20 +12,15 @@ public class MainRole extends People{
 	public int x_shift;
 	public int y_shift;
 	public int hp;
-	//private Weapon currentWeapon ;
-	//private HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
-	//private HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
+	public Weapon currentWeapon ;
+	public HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
+	public HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
 	public int map_value = 2;
 
 	public int money = 0;
 	public int kill = 0;
 	public int distance = 0;
 	private int reload;
-	
-	private Weapon gun = new Gun();
-	private Weapon shotgun = new ShotGun();
-	private Weapon machinegun = new MachineGun();
-	private Weapon sniperRfile = new SniperRfile();
 
 
 	public MainRole(int x, int y, int value) {
@@ -44,15 +39,10 @@ public class MainRole extends People{
 	}
 	public void initWeapon()
 	{
-		currentWeapon = gun;
+		currentWeapon = new Gun();
 		readyBullet.put(currentWeapon,currentWeapon.getClipAmount());
 		totalBullet.put(currentWeapon,99999);
-		readyBullet.put(shotgun,0);
-		totalBullet.put(shotgun,0);
-		readyBullet.put(machinegun,0);
-		totalBullet.put(machinegun,0);
-		readyBullet.put(sniperRfile,0);
-		totalBullet.put(sniperRfile,0);
+
 	}
 	public void moveLeft()
 	{
@@ -69,105 +59,6 @@ public class MainRole extends People{
 	{
 		return currentWeapon.getAtk();
 	}*/
-	public void changeWeapon(String weapon)
-	{
-		if(weapon.equals("gun"))
-		{
-			currentWeapon = gun;
-	    }
-		else if(weapon.equals("shotgun"))
-		{
-			currentWeapon = shotgun;
-	    }
-		else if(weapon.equals("machinegun"))
-		{
-			currentWeapon = machinegun;
-		}
-		else if(weapon.equals("sniperrfile"))
-		{
-			currentWeapon = sniperRfile;
-	    }
-	}	
-	public int getReady(String weapon)
-	{
-		int output = 0;
-		if(weapon.equals("gun"))
-		{
-	        for (Weapon key : readyBullet.keySet()) 
-	        {
-	            if(key instanceof Gun){
-	            	output = readyBullet.get(key);
-	            }
-	        }		
-	    }
-		else if(weapon.equals("shotgun"))
-		{
-	        for (Weapon key : readyBullet.keySet()) 
-	        {
-	            if(key instanceof ShotGun){
-	            	output = readyBullet.get(key);
-	            }
-	        }
-	    }
-		else if(weapon.equals("machinegun"))
-		{
-	        for (Weapon key : readyBullet.keySet()) 
-	        {
-	            if(key instanceof MachineGun){
-	            	output = readyBullet.get(key);
-	            }
-	        }
-		}
-		else if(weapon.equals("sniperrfile")){
-	        for (Weapon key : readyBullet.keySet()) 
-	        {
-	            if(key instanceof SniperRfile){
-	            	output = readyBullet.get(key);
-	            }
-	        }		
-	    }
-		return output;
-	}
-	public int getTotal(String weapon)
-	{
-		int output = 0;
-		if(weapon.equals("gun"))
-		{
-	        for (Weapon key : totalBullet.keySet()) 
-	        {
-	            if(key instanceof Gun){
-	            	output = totalBullet.get(key);
-	            }
-	        }		
-	    }
-		else if(weapon.equals("shotgun"))
-		{
-	        for (Weapon key : totalBullet.keySet()) 
-	        {
-	            if(key instanceof ShotGun){
-	            	output = totalBullet.get(key);
-	            }
-	        }
-	    }
-		else if(weapon.equals("machinegun"))
-		{
-	        for (Weapon key : totalBullet.keySet()) 
-	        {
-	            if(key instanceof MachineGun){
-	            	output = totalBullet.get(key);
-	            }
-	        }
-		}
-		else if(weapon.equals("sniperrfile")){
-	        for (Weapon key : totalBullet.keySet()) 
-	        {
-	            if(key instanceof SniperRfile){
-	            	output = totalBullet.get(key);
-	            }
-	        }		
-	    }
-		return output;
-	}
 	public int shot() //mouse Event
 	{
 		int ready = readyBullet.get(currentWeapon);
@@ -222,7 +113,6 @@ public class MainRole extends People{
 	public void die() //override @ mainRole & enemy
 	{
 		//GameOver
-		System.out.println("die");
 		isDie = true;
     }
 
@@ -231,12 +121,12 @@ public class MainRole extends People{
 		edit_map(0);
 
 		x+=b?x_shift:-x_shift;
-		if(x > MiniCSLaunch.FRAME_WIDTH*0.5)
+		if(x > MiniCSLaunch.MAINPANEL_WIDTH*0.5)
 		{
 			x -= x_shift;
 			MainPanel.map_go();
 		}
-		else if(x < MiniCSLaunch.FRAME_WIDTH*0.1)
+		else if(x < MiniCSLaunch.MAINPANEL_WIDTH*0.1)
 			x += x_shift;
 	}
 	public void moveVertical(Boolean b)

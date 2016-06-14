@@ -11,11 +11,13 @@ public class Enemy extends People{
 	public int x_shift;
 	public int y_shift;
 	public int hp;
-	private Weapon currentWeapon;
-	private HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
-	private HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
+	public Weapon currentWeapon;
+	public HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
+	public HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
 	public int map_value = 2;
 	private int die = 0;
+	
+	
 
 	public Enemy(int x, int y, int value) {
 		this.x = x;

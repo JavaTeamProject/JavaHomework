@@ -9,7 +9,7 @@ public class People extends MapElement{
 	public int x_shift;
 	public int y_shift;
 	public int hp;
-	public Weapon currentWeapon;
+	public Weapon currentWeapon = new Gun();
 	public HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
 	public HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
 	//private int reload = 0 ;
@@ -44,20 +44,7 @@ public class People extends MapElement{
 	}
 	public int getAtk()
 	{
-		return 1;
-		//return currentWeapon.getAtk();
-	}
-	public void changeWeapon(String weapon)
-	{
-
-	}	
-	public int getReady(String weapon)
-	{
-		return 0;
-	}
-	public int getTotal(String weapon)
-	{
-		return 0;
+		return currentWeapon.getAtk();
 	}
 	public int shot() //mouse Event
 	{
@@ -98,12 +85,12 @@ public class People extends MapElement{
 		edit_map(0);
 		
 		x+=b?x_shift:-x_shift;
-		if(x > MiniCSLaunch.FRAME_WIDTH*0.5)
+		if(x > MiniCSLaunch.MAINPANEL_WIDTH*0.5)
 		{
 			x -= x_shift;
 			MainPanel.map_go();
 		}
-		else if(x < MiniCSLaunch.FRAME_WIDTH*0.1)
+		else if(x < MiniCSLaunch.MAINPANEL_WIDTH*0.1)
 			x += x_shift;
 	}
 	public void moveVertical(Boolean b)

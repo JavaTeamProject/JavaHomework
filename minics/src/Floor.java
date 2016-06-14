@@ -20,7 +20,7 @@ public class Floor extends MapElement{
 		g.setColor(Color.GREEN);
 		g.drawLine(x, y, x+9, y);
 		g.setColor(new Color(125, 102, 66));
-		g.fillRect(x, y+1, 10, (int)(MiniCSLaunch.FRAME_HIGHT*0.25)-2);
+		g.fillRect(x, y+1, 10, (int)(MiniCSLaunch.MAINPANEL_HIGHT*0.25)-2);
 		
 		
 		edit_map(map_value);

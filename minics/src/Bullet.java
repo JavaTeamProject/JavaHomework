@@ -39,7 +39,7 @@ public class Bullet extends MapElement{
 	{
 		x+=x_shift;
 		y+=y_shift;
-		if(x <= 0 || x >= MiniCSLaunch.FRAME_WIDTH || y <= 0 || y >= MiniCSLaunch.FRAME_HIGHT)	//fly outside
+		if(x <= 0 || x >= MiniCSLaunch.MAINPANEL_WIDTH || y <= 0 || y >= MiniCSLaunch.MAINPANEL_HIGHT)	//fly outside
 		{
 			exist = 0;
 		}	
@@ -64,6 +64,19 @@ public class Bullet extends MapElement{
 				else if(E==2)
 				{
 					MainPanel.main_role.hit(atk);
+			exist = 0;
+			if(E==1){
+				Iterator<Enemy> itr4 = MainPanel.enemy_hashset.iterator();
+				while(itr4.hasNext()){
+					Enemy tmp = itr4.next();
+					for(int i=-1;i<1;i++)
+						for(int j=-3;j<1;j++)
+							if((int)(tmp.x/10+i)==(int)(x/10) && (int)(tmp.y/10+j)==(int)(y/10))
+							{
+								tmp.die();
+								System.out.println("123456");
+								break;
+							}
 				}
 			}
 			else{
