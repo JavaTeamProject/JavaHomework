@@ -22,6 +22,10 @@ public class MainRole extends People{
 	public int distance = 0;
 	private int reload;
 
+	private Weapon gun = new Gun();
+	private Weapon shotgun = new ShotGun();
+	private Weapon machinegun = new MachineGun();
+	private Weapon sniperRfile = new SniperRfile();
 
 	public MainRole(int x, int y, int value) {
 		this.x = x;
@@ -39,14 +43,38 @@ public class MainRole extends People{
 	}
 	public void initWeapon()
 	{
-		currentWeapon = new Gun();
+		currentWeapon = gun;
 		readyBullet.put(currentWeapon,currentWeapon.getClipAmount());
 		totalBullet.put(currentWeapon,99999);
-
+		readyBullet.put(shotgun,0);
+		totalBullet.put(shotgun,200);
+		readyBullet.put(machinegun,0);
+		totalBullet.put(machinegun,0);
+		readyBullet.put(sniperRfile,0);
+		totalBullet.put(sniperRfile,200);
 	}
 	public void moveLeft()
 	{
 	}
+	public void changeWeapon(String weapon)
+	{
+		if(weapon.equals("gun"))
+		{
+			currentWeapon = gun;
+	    }
+		else if(weapon.equals("shotgun"))
+		{
+			currentWeapon = shotgun;
+	    }
+		else if(weapon.equals("machinegun"))
+		{
+			currentWeapon = machinegun;
+		}
+		else if(weapon.equals("sniperrfile"))
+		{
+			currentWeapon = sniperRfile;
+	    }
+	}	
 	public void hit(int atk)
 	{
 		hp = hp - atk;
