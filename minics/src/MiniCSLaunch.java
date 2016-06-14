@@ -23,7 +23,7 @@ public class MiniCSLaunch{
 		frame.setVisible(true);
 		mainpanel.setVisible(true);
 		System.out.println(MainRole.isDie);
-		if (!MainRole.isDie) {
+		if (MainRole.isDie) {
 			//mainpanel.setVisible(false);
 			gameoverpanel.setVisible(true);
 		}
@@ -41,8 +41,8 @@ public class MiniCSLaunch{
 	
 	public static void initialPanel()
 	{
-		frame.add(gameoverpanel);
-		//frame.add(mainpanel);
+		//frame.add(gameoverpanel);
+		frame.add(mainpanel);
 
 		
 		/*

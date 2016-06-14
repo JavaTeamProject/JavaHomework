@@ -55,11 +55,15 @@ public class Bullet extends MapElement{
 							if((int)(tmp.x/10+i)==(int)(x/10) && (int)(tmp.y/10+j)==(int)(y/10))
 							{
 								tmp.die();
-								System.out.println("123456");
+								//System.out.println("123456");
 								break;
 							}
 				}
 				//MainPanel.enemy.die();
+			}
+			else if(E==2)
+			{
+				MainPanel.main_role.hit(atk);
 			}
 		}
 		else if(MainPanel.map[(int)(x/10)][(int)(y/10)] == 3 || MainPanel.map[(int)(x/10)][(int)(y/10)] == 4)	//hit floor or obstacle

@@ -16,8 +16,6 @@ public class Enemy extends People{
 	private HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
 	public int map_value = 2;
 	private int die = 0;
-	
-	
 
 	public Enemy(int x, int y, int value) {
 		this.x = x;
