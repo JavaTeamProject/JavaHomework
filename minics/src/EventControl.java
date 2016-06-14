@@ -1,49 +1,71 @@
 package minics;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class EventControl implements KeyListener,MouseListener{
+public class EventControl implements KeyListener,MouseListener,ActionListener{
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()){
-						case KeyEvent.VK_DOWN:
-							MainPanel.main_role.moveVertical(true);
-							break;
-						/*case KeyEvent.VK_UP:
-							MainPanel.main_role.moveVertical(false);
-							break;*/
-						case KeyEvent.VK_LEFT:
-							MainPanel.main_role.moveHorizontal(false);
-							break;
-						case KeyEvent.VK_RIGHT:
-							MainPanel.main_role.moveHorizontal(true);
-							break;
-						case KeyEvent.VK_ESCAPE:
-							System.exit(0);
-							break;
-						
-						case 49:
-							MainPanel.main_role.changeWeapon("gun");
-							break;
-						case 50:
-							MainPanel.main_role.changeWeapon("machinegun");
-							break;
-						case 51:
-							MainPanel.main_role.changeWeapon("shotgun");
-							break;
-						case 52:
-							MainPanel.main_role.changeWeapon("sniperrfile");
-							break;
-						
-						default: break;
+			case KeyEvent.VK_DOWN:
+				MainPanel.main_role.moveVertical(true);
+				break;
+			/*case KeyEvent.VK_UP:
+				MainPanel.main_role.moveVertical(false);
+				break;*/
+			case KeyEvent.VK_LEFT:
+				MainPanel.main_role.moveHorizontal(false);
+				break;
+			case KeyEvent.VK_RIGHT:
+				MainPanel.main_role.moveHorizontal(true);
+				break;
+			case KeyEvent.VK_ESCAPE:
+				System.exit(0);
+				break;
+			
+			case 49:
+				MainPanel.main_role.changeWeapon("gun");
+				break;
+			case 50:
+				MainPanel.main_role.changeWeapon("machinegun");
+				break;
+			case 51:
+				MainPanel.main_role.changeWeapon("shotgun");
+				break;
+			case 52:
+				MainPanel.main_role.changeWeapon("sniperrfile");
+				break;
+			
+			default: break;
 		}
 	}
 	public void keyTyped(KeyEvent event) {}
 	public void keyReleased(KeyEvent e) {}
-	public void actionPerformed(ActionEvent e){}
+	public void actionPerformed(ActionEvent e)
+	{
+		switch(e.getActionCommand())
+		{
+		case "gun_button":
+			MainPanel.main_role.buyWeapon(new Gun());
+		break;	
+		
+		case "machine_button":
+			MainPanel.main_role.buyWeapon(new MachineGun());
+		break;	
+		
+		case "sniper_button":
+			MainPanel.main_role.buyWeapon(new SniperRfile());
+		break;
+		
+		case "shot_button":
+			MainPanel.main_role.buyWeapon(new ShotGun());
+		break;	
+		}
+		MiniCSLaunch.mainpanel.requestFocusInWindow();
+	}
 	public void mousePressed(MouseEvent event)
 	{
         if (event.getButton() == MouseEvent.BUTTON1) //left button

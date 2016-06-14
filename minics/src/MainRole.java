@@ -5,17 +5,17 @@ import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Timer;
 
-public class MainRole extends People{
+public class MainRole extends MapElement{
 
 	public static Boolean isDie = false;
 	public Color color = Color.BLUE;
 	public int x_shift;
 	public int y_shift;
+	public final int max_hp = 100;
 	public int hp;
 	public Weapon currentWeapon ;
 	public HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
 	public HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
-	public int map_value = 2;
 
 	public int money = 0;
 	public int kill = 0;
@@ -27,15 +27,15 @@ public class MainRole extends People{
 	private Weapon machinegun = new MachineGun();
 	private Weapon sniperRfile = new SniperRfile();
 
-	public MainRole(int x, int y, int value) {
+	public MainRole(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.map_value = value;
+		this.map_value = 1;
 
 		x_shift = 10;
 		y_shift = 10;
 		map_x_shift = x_shift;
-		hp = 1000;
+		hp = 100;
 
 		exist = 1;
 
@@ -83,10 +83,10 @@ public class MainRole extends People{
 			die();
 		}
 	}
-	/*public int getAtk()
+	public int getAtk()
 	{
 		return currentWeapon.getAtk();
-	}*/
+	}
 	public void setMoney(int add)
 	{
 		money += add;
@@ -205,6 +205,14 @@ public class MainRole extends People{
 		g.drawLine(x, y-8, x-7, y);
 		g.drawLine(x, y+1, x+7, y+9);
 		g.drawLine(x, y+1, x-7, y+9);
+		g.setColor(Color.DARK_GRAY);
+		g.drawRect(x-15, y-42, 30, 8);
+		g.setColor(Color.RED);
+		g.fillRect(x-14, y-41, 29, 7);
+		
+		g.setColor(Color.GREEN);
+		g.fillRect(x-14, y-41, hp*29/max_hp, 7);
+		
 		if(reload!=0){
 			g.drawString("reload!", x-15, y-32);
 		}

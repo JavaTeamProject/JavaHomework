@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Random;
 
-public class Enemy extends People{
+public class Enemy extends MapElement{
 	
 	public Color color = Color.PINK;
 	public int x_shift;
@@ -14,18 +14,20 @@ public class Enemy extends People{
 	public Weapon currentWeapon;
 	public HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
 	public HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
-	public int map_value = 2;
+	
 	private int die = 0;
 	
 	
 
-	public Enemy(int x, int y, int value) {
+	public Enemy(int x, int y) {
 		this.x = x;
 		this.y = y;
 		
 		x_shift = 10;
 		y_shift = 10;
-		map_x_shift = x_shift;
+		map_x_shift = 10;
+		
+		map_value = 2;
 		hp = 100;
 		
 		exist = 1;
@@ -42,11 +44,12 @@ public class Enemy extends People{
 	{
 		edit_map(0);
 		x -= map_x_shift;
-		if(x <= 0)	
+		if(x < 10)	
 		{
 			exist = 0;
 		}	
 	}
+/*
 	public void hit(int atk)
 	{
 		hp = hp - atk;
@@ -54,6 +57,11 @@ public class Enemy extends People{
 		{
 			die();
 		}
+	}
+	*/
+	public int getAtk()
+	{
+		return currentWeapon.getAtk();
 	}
 	public int shot() 
 	{
@@ -90,6 +98,8 @@ public class Enemy extends People{
 	}
 	public void die()
 	{
+		MainPanel.main_role.setKill(1);
+		MainPanel.main_role.setMoney(100);
 		die = 1 ;
 		/*edit_map(0);
 		exist = 0;*/

@@ -7,10 +7,10 @@ import java.awt.Dimension;
 public class MiniCSLaunch{
 	
 	public static final Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-	//public static final double MAINPANEL_WIDTH = (int)(screenSize.getWidth()/10)*10;
-	//public static final double MAINPANEL_HIGHT = (int)(screenSize.getHeight()/10)*10;
-	public static final double FRAME_WIDTH = 1280;
-	public static final double FRAME_HIGHT = 800;
+	public static final double FRAME_WIDTH = (int)(screenSize.getWidth()/100)*100+100;
+	public static final double FRAME_HIGHT = (int)(screenSize.getHeight()/100)*100+100;
+	//public static final double FRAME_WIDTH = 1280;
+	//public static final double FRAME_HIGHT = 800;
 	public static final double MAINPANEL_WIDTH = FRAME_WIDTH;
 	public static final double MAINPANEL_HIGHT = FRAME_HIGHT*0.7;
 	public static final double WEAPONPANEL_WIDTH = FRAME_WIDTH;
@@ -40,7 +40,7 @@ public class MiniCSLaunch{
 	{
 		frame = new JFrame();
 		frame.setLayout(null);
-		//frame.setUndecorated(true);
+		frame.setUndecorated(true);
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize((int)FRAME_WIDTH,(int)FRAME_HIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,10 +59,9 @@ public class MiniCSLaunch{
 		frame.add(weaponpanel);
 		weaponpanel.setVisible(true);
 		
-		/*
-		 * 
-		 * 
-		 * 
-		 * */
+		gameoverpanel.setSize((int)FRAME_WIDTH,(int) FRAME_HIGHT);
+		gameoverpanel.setLocation(0,0);
+		frame.add(gameoverpanel);	
+		gameoverpanel.setVisible(false);
 	}
 }

@@ -11,7 +11,6 @@ public class Floor extends MapElement{
 		this.y = y;
 		this.map_x_shift = 10;
 		this.map_value = 4;
-		
 		this.exist = 1;
 	}
 	

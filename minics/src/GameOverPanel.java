@@ -13,6 +13,14 @@ import javax.imageio.*;
 public class GameOverPanel extends JPanel{
 	public Image image;
 	public Vector<String> gameover = new Vector();
+	
+	public GameOverPanel()
+	{
+			addKeyListener(new EventControl());
+			addMouseListener(new EventControl());
+			setFocusable(true);
+	}
+	
 	public Vector readFile(String fileName) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(fileName));
 		try {

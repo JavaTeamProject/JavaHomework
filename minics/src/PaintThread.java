@@ -9,9 +9,15 @@ public class PaintThread extends Thread{
 		while(MainRole.isDie == false)
 		{
 			mainPanel.repaint();
+			MiniCSLaunch.weaponpanel.refresh();
 			try {
 	            Thread.sleep(MainPanel.REFRESH_TIME);
 	        } catch (InterruptedException e) {e.printStackTrace();}
 		}
+		MiniCSLaunch.mainpanel.setVisible(false);
+		MiniCSLaunch.weaponpanel.setVisible(false);
+		MiniCSLaunch.gameoverpanel.setVisible(true);
+		MiniCSLaunch.mainpanel.requestFocusInWindow();
+		
 	}
 }
