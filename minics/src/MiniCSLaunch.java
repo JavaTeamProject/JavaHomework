@@ -7,12 +7,19 @@ import java.awt.Dimension;
 public class MiniCSLaunch{
 	
 	public static final Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-	//public static final double FRAME_WIDTH = (int)(screenSize.getWidth()/10)*10;
-	//public static final double FRAME_HIGHT = (int)(screenSize.getHeight()/10)*10;
-	public static final double FRAME_WIDTH = 800;
-	public static final double FRAME_HIGHT = 600;
+	//public static final double MAINPANEL_WIDTH = (int)(screenSize.getWidth()/10)*10;
+	//public static final double MAINPANEL_HIGHT = (int)(screenSize.getHeight()/10)*10;
+	public static final double FRAME_WIDTH = 1280;
+	public static final double FRAME_HIGHT = 800;
+	public static final double MAINPANEL_WIDTH = FRAME_WIDTH;
+	public static final double MAINPANEL_HIGHT = FRAME_HIGHT*0.7;
+	public static final double WEAPONPANEL_WIDTH = FRAME_WIDTH;
+	public static final double WEAPONPANEL_HIGHT = FRAME_HIGHT*0.3;
+	
+	
 	
 	public static MainPanel mainpanel = new MainPanel();
+	public static WeaponPanel weaponpanel = new WeaponPanel();
 	public static GameOverPanel gameoverpanel = new GameOverPanel();
 	public static JFrame frame;
 	
@@ -21,18 +28,18 @@ public class MiniCSLaunch{
 		initialFrame();
 		initialPanel();
 		frame.setVisible(true);
-		mainpanel.setVisible(true);
-		System.out.println(MainRole.isDie);
-		if (MainRole.isDie) {
-			//mainpanel.setVisible(false);
-			gameoverpanel.setVisible(true);
-		}
+//		System.out.println(MainRole.isDie);
+//		if (!MainRole.isDie) {
+//			//mainpanel.setVisible(false);
+//			gameoverpanel.setVisible(true);
+//		}
 		
 	}
 
 	public static void initialFrame()
 	{
 		frame = new JFrame();
+		frame.setLayout(null);
 		//frame.setUndecorated(true);
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize((int)FRAME_WIDTH,(int)FRAME_HIGHT);
@@ -42,8 +49,15 @@ public class MiniCSLaunch{
 	public static void initialPanel()
 	{
 		//frame.add(gameoverpanel);
-		frame.add(mainpanel);
-
+		mainpanel.setSize((int)MAINPANEL_WIDTH,(int) MAINPANEL_HIGHT);
+		mainpanel.setLocation(0,0);
+		frame.add(mainpanel);	
+		mainpanel.setVisible(true);
+		
+		weaponpanel.setSize((int)WEAPONPANEL_WIDTH,(int) WEAPONPANEL_HIGHT);
+		weaponpanel.setLocation(0,(int)(FRAME_HIGHT*0.7));
+		frame.add(weaponpanel);
+		weaponpanel.setVisible(true);
 		
 		/*
 		 * 

@@ -42,7 +42,7 @@ public class GameOverPanel extends JPanel{
 		int h = 0;
 		int w = 0;
 		try {
-			image = ImageIO.read(new File("pic/gameover.jpg"));
+			image = ImageIO.read(new File("img/gameover.jpg"));
 			h = image.getHeight(null);
 			w = image.getWidth(null);
 		}

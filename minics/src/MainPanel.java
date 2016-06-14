@@ -1,4 +1,3 @@
-
 package minics;
 
 import java.util.*;
@@ -14,14 +13,14 @@ public class MainPanel extends JPanel{
 	public static final int REFLY_TIME = 10;	//bullet fly time(ms)
 	public static final int PIC_LENGTH = 10;    //game unit
 	
-	public static final int MAP_WIDTH = (int)(MiniCSLaunch.FRAME_WIDTH/PIC_LENGTH);
-	public static final int MAP_HIGHT = (int)(MiniCSLaunch.FRAME_HIGHT/PIC_LENGTH);
+	public static final int MAP_WIDTH = (int)(MiniCSLaunch.MAINPANEL_WIDTH/PIC_LENGTH);
+	public static final int MAP_HIGHT = (int)(MiniCSLaunch.MAINPANEL_HIGHT/PIC_LENGTH);
 	
 	public static int[][] map;
 	public static int level;
 	public static long map_go_length;
-	public static People main_role;
-	public static Enemy enemy;
+	public static MainRole main_role;
+	//public static Enemy enemy;
 	public static HashSet<Enemy> enemy_hashset = new HashSet<Enemy>();
 	public static HashSet<Enemy> out_enemy_hashset = new HashSet<Enemy>();
 	public static HashSet<People> people_hashset = new HashSet<People>();
@@ -86,15 +85,15 @@ public class MainPanel extends JPanel{
 	}
 	public void initialFloor()
 	{
-		for(int i=0; i<MiniCSLaunch.FRAME_WIDTH ; i+=10)
+		for(int i=0; i<MiniCSLaunch.MAINPANEL_WIDTH ; i+=10)
 		{
-			floor_hashset.add(new Floor(i, (int)(MiniCSLaunch.FRAME_HIGHT*0.75)));
+			floor_hashset.add(new Floor(i, (int)(MiniCSLaunch.MAINPANEL_HIGHT*0.75)));
 		}
 	}
 	public void initialObstacle()
 	{
 		level = 0;
-		for(int i=200; i<MiniCSLaunch.FRAME_WIDTH ; i+=20)
+		for(int i=200; i<MiniCSLaunch.MAINPANEL_WIDTH ; i+=20)
 		{
 			level += (int)(Math.random()*3)-1;
 			//System.out.println(level);
@@ -102,42 +101,41 @@ public class MainPanel extends JPanel{
 			level = (level==7)?6:level;
 			for(int j=0 ; j<level*10 ; j+=10)
 			{
-				obstacle_hashset.add(new Obstacle(i, (int)(MiniCSLaunch.FRAME_HIGHT*0.75)-j-10));
+				obstacle_hashset.add(new Obstacle(i, (int)(MiniCSLaunch.MAINPANEL_HIGHT*0.75)-j-10));
 			}
 		}
 	}
 	
 	public void initialMainRole()
 	{
-		main_role = new MainRole((int)(MiniCSLaunch.FRAME_WIDTH*0.2),(int)(MiniCSLaunch.FRAME_HIGHT*0.75)-10,1);
+		main_role = new MainRole((int)(MiniCSLaunch.MAINPANEL_WIDTH*0.2),(int)(MiniCSLaunch.MAINPANEL_HIGHT*0.75)-10,1);
 		people_hashset.add(main_role);
 	}
-	
-	public static void initialEnemy()
+/*		public static void initialEnemy()
 	{
-		enemy_hashset.add(new Enemy((int)(MiniCSLaunch.FRAME_WIDTH*0.9), (int)(MiniCSLaunch.FRAME_WIDTH*0.7), 2));
+		enemy_hashset.add(new Enemy((int)(MiniCSLaunch.MAINPANEL_WIDTH*0.9), (int)(MiniCSLaunch.MAINPANEL_WIDTH*0.7), 2));
 	}
-	
+*/	
 	public static void map_go()
 	{
 		map_go_length++;
 		
-		Iterator<Floor> itr0 = floor_hashset.iterator();	//??���?���??������
+		Iterator<Floor> itr0 = floor_hashset.iterator();	//??嚙踝蕭?嚙踝蕭??嚙踐秘嚙踐瓷
 		while(itr0.hasNext()){
 			itr0.next().moveLeft();
 		}
 		
-		Iterator<Obstacle> itr1 = obstacle_hashset.iterator();	//??���?���?������炬���?���
+		Iterator<Obstacle> itr1 = obstacle_hashset.iterator();	//??嚙踝蕭?嚙踝蕭?嚙踝蕭嚙踐鬲嚙踝蕭?嚙踝
 		while(itr1.hasNext()){
 			itr1.next().moveLeft();
 		}
 		
-		Iterator<Bullet> itr2 = bullet_hashset.iterator();	//??���?���??���??�����蕭?
+		Iterator<Bullet> itr2 = bullet_hashset.iterator();	//??嚙踝蕭?嚙踝蕭??嚙踝蕭??嚙踝蕭嚙�?
 		while(itr2.hasNext()){
 			itr2.next().moveLeft();
 		}
 		
-		/*Iterator<People> itr3 = people_hashset.iterator();	//??���?���??���?���?���
+		/*Iterator<People> itr3 = people_hashset.iterator();	//??嚙踝蕭?嚙踝蕭??嚙踝蕭?嚙踝蕭?嚙踝蕭
 		while(itr3.hasNext()){
 			People tmp = itr3.next();
 			if(tmp.map_value !=1)
@@ -148,7 +146,7 @@ public class MainPanel extends JPanel{
 		while(itr4.hasNext()){
 			itr4.next().moveLeft();
 		}
-		floor_hashset.add(new Floor((int)MiniCSLaunch.FRAME_WIDTH-10, (int)(MiniCSLaunch.FRAME_HIGHT*0.75))); //嚙踝蕭?嚙踝蕭?嚙踐竣謓蛛蕭嚙�?
+		floor_hashset.add(new Floor((int)MiniCSLaunch.MAINPANEL_WIDTH-10, (int)(MiniCSLaunch.MAINPANEL_HIGHT*0.75))); //��?��?���?
 
 		if(map_go_length%2 == 0)
 		{
@@ -159,7 +157,7 @@ public class MainPanel extends JPanel{
 			level = (level==7)?6:level;
 			for(int j=0 ; j<level*10 ; j+=10)
 			{
-				obstacle_hashset.add(new Obstacle(((int)MiniCSLaunch.FRAME_WIDTH/20)*19, (int)(MiniCSLaunch.FRAME_HIGHT*0.75)-j-10));	//���?���?������炬���?���
+				obstacle_hashset.add(new Obstacle(((int)MiniCSLaunch.MAINPANEL_WIDTH/20)*19, (int)(MiniCSLaunch.MAINPANEL_HIGHT*0.75)-j-10));	//嚙踝蕭?嚙踝蕭?嚙踐筐嚙踐鬲嚙踝蕭?嚙踝
 			}
 		}
 	}
@@ -167,7 +165,7 @@ public class MainPanel extends JPanel{
 	public void paint(Graphics g){
 		super.paint(g);
 		
-		Iterator<Floor> itr0 = floor_hashset.iterator();	//���握������
+		Iterator<Floor> itr0 = floor_hashset.iterator();	//嚙踐嚙踐秘嚙踐瓷
 		while(itr0.hasNext()){
 			Floor tmp = itr0.next();
 			if(tmp.exist == 0)
@@ -175,9 +173,9 @@ public class MainPanel extends JPanel{
 			else
 				tmp.draw(g);
 		}
-		floor_hashset.removeAll(out_floor_hashset);	//??���?���?���������?���������??���������
+		floor_hashset.removeAll(out_floor_hashset);	//??嚙踝蕭?嚙踝蕭?嚙踝蕭嚙踝嚙踐?嚙踝蕭嚙踐嚙踝蕭??嚙踐秘嚙踐瓷嚙踝蕭
 		
-		Iterator<Obstacle> itr1 = obstacle_hashset.iterator();	//���握���雓忽�雓�
+		Iterator<Obstacle> itr1 = obstacle_hashset.iterator();	//嚙踐嚙踝蕭謚穿蕭謕
 		while(itr1.hasNext()){
 			Obstacle tmp = itr1.next();
 			if(tmp.exist == 0)
@@ -185,9 +183,9 @@ public class MainPanel extends JPanel{
 			else
 				tmp.draw(g);
 		}
-		obstacle_hashset.removeAll(out_obstacle_hashset);	//??���?���?���������?���������??���雓忽�雓����
+		obstacle_hashset.removeAll(out_obstacle_hashset);	//??嚙踝蕭?嚙踝蕭?嚙踝蕭嚙踝嚙踐?嚙踝蕭嚙踐嚙踝蕭??嚙踝蕭謚穿蕭謕嚙踝蕭
 		
-		Iterator<Bullet> itr2 = bullet_hashset.iterator();	//���握?���??�����蕭?
+		Iterator<Bullet> itr2 = bullet_hashset.iterator();	//嚙踐?嚙踝蕭??嚙踝蕭嚙�?
 		while(itr2.hasNext()){
 			Bullet tmp = itr2.next();
 			if(tmp.exist == 0)
@@ -195,9 +193,9 @@ public class MainPanel extends JPanel{
 			else
 				tmp.draw(g);
 		}
-		bullet_hashset.removeAll(out_bullet_hashset);	//??���?���?���������?���������??���??���??�����蕭?
+		bullet_hashset.removeAll(out_bullet_hashset);	//??嚙踝蕭?嚙踝蕭?嚙踝蕭嚙踝嚙踝蕭?嚙踝嚙踐嚙踝蕭??嚙踝蕭??嚙踝蕭??嚙踝蕭嚙�?
 		
-		Iterator<People> itr3 = people_hashset.iterator();	//���握?������
+		Iterator<People> itr3 = people_hashset.iterator();	//嚙踐?嚙踝蕭蝞
 		while(itr3.hasNext()){
 			People tmp = itr3.next();
 			if(tmp.exist == 0)
@@ -207,7 +205,7 @@ public class MainPanel extends JPanel{
 		}
 		people_hashset.removeAll(out_people_hashset);
 		
-		Iterator<Enemy> itr4 = enemy_hashset.iterator();	//���握?������
+		Iterator<Enemy> itr4 = enemy_hashset.iterator();	//嚙踐?嚙踝蕭蝞
 		while(itr4.hasNext()){
 			Enemy tmp = itr4.next();
 			if(tmp.exist == 0)
@@ -215,7 +213,7 @@ public class MainPanel extends JPanel{
 			else
 				tmp.draw(g);
 		}
-		enemy_hashset.removeAll(out_enemy_hashset);	//??���?���?���������?���������??���?�����蕭?
+		enemy_hashset.removeAll(out_enemy_hashset);	//??嚙踝蕭?嚙踝蕭?嚙踝蕭嚙踝嚙踝蕭?嚙踝嚙踐嚙踝蕭??嚙踝蕭?嚙踝蕭嚙�?
 		
 	}
 
