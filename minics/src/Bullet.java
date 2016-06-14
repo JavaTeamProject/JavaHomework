@@ -59,26 +59,12 @@ public class Bullet extends MapElement{
 									break;
 								}
 					}
-					//MainPanel.enemy.die();
 				}
 				else if(E==2)
 				{
 					MainPanel.main_role.hit(atk);
-			exist = 0;
-			if(E==1){
-				Iterator<Enemy> itr4 = MainPanel.enemy_hashset.iterator();
-				while(itr4.hasNext()){
-					Enemy tmp = itr4.next();
-					for(int i=-1;i<1;i++)
-						for(int j=-3;j<1;j++)
-							if((int)(tmp.x/10+i)==(int)(x/10) && (int)(tmp.y/10+j)==(int)(y/10))
-							{
-								tmp.die();
-								System.out.println("123456");
-								break;
-							}
 				}
-			}
+			}	
 			else{
 				exist = 0;
 				if(E==1){
