@@ -24,6 +24,20 @@ public class EventControl implements KeyListener,MouseListener{
 						case KeyEvent.VK_ESCAPE:
 							System.exit(0);
 							break;
+						
+						case 49:
+							MainPanel.main_role.changeWeapon("gun");
+							break;
+						case 50:
+							MainPanel.main_role.changeWeapon("machinegun");
+							break;
+						case 51:
+							MainPanel.main_role.changeWeapon("shotgun");
+							break;
+						case 52:
+							MainPanel.main_role.changeWeapon("sniperrfile");
+							break;
+						
 						default: break;
 		}
 	}
@@ -37,7 +51,11 @@ public class EventControl implements KeyListener,MouseListener{
         	if(MainPanel.main_role.shot()==1)
     		{
     			int atk = MainPanel.main_role.getAtk();
-        		MainPanel.bullet_hashset.add(new Bullet(MainPanel.main_role.x, MainPanel.main_role.y, event.getX()-MainPanel.main_role.x, event.getY()-MainPanel.main_role.y,1,atk));
+    			if (MainPanel.main_role.currentWeapon instanceof ShotGun)
+    				for (int i = -2; i < 3; i++)
+        				MainPanel.bullet_hashset.add(new Bullet(MainPanel.main_role.x, MainPanel.main_role.y, event.getX()-MainPanel.main_role.x + i * 10, event.getY()-MainPanel.main_role.y + i * 10,1,atk));
+    			else
+    				MainPanel.bullet_hashset.add(new Bullet(MainPanel.main_role.x, MainPanel.main_role.y, event.getX()-MainPanel.main_role.x, event.getY()-MainPanel.main_role.y,1,atk));
     		}
         }
         if (event.getButton() == MouseEvent.BUTTON3) //right button

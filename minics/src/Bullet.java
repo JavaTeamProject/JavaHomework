@@ -45,25 +45,48 @@ public class Bullet extends MapElement{
 		}	
 		else if(MainPanel.map[(int)(x/10)][(int)(y/10)] == (E==2?1:2) )	//hit people
 		{
-			exist = 0;
-			if(E==1){
-				Iterator<Enemy> itr4 = MainPanel.enemy_hashset.iterator();
-				while(itr4.hasNext()){
-					Enemy tmp = itr4.next();
-					for(int i=-1;i<1;i++)
-						for(int j=-3;j<1;j++)
-							if((int)(tmp.x/10+i)==(int)(x/10) && (int)(tmp.y/10+j)==(int)(y/10))
-							{
-								tmp.die();
-								//System.out.println("123456");
-								break;
-							}
+			if(MainPanel.main_role.currentWeapon instanceof SniperRfile){
+				if(E==1){
+					Iterator<Enemy> itr4 = MainPanel.enemy_hashset.iterator();
+					while(itr4.hasNext()){
+						Enemy tmp = itr4.next();
+						for(int i=-1;i<1;i++)
+							for(int j=-3;j<1;j++)
+								if((int)(tmp.x/10+i)==(int)(x/10) && (int)(tmp.y/10+j)==(int)(y/10))
+								{
+									tmp.die();
+									//System.out.println("123456");
+									break;
+								}
+					}
+					//MainPanel.enemy.die();
 				}
-				//MainPanel.enemy.die();
+				else if(E==2)
+				{
+					MainPanel.main_role.hit(atk);
+				}
 			}
-			else if(E==2)
-			{
-				MainPanel.main_role.hit(atk);
+			else{
+				exist = 0;
+				if(E==1){
+					Iterator<Enemy> itr4 = MainPanel.enemy_hashset.iterator();
+					while(itr4.hasNext()){
+						Enemy tmp = itr4.next();
+						for(int i=-1;i<1;i++)
+							for(int j=-3;j<1;j++)
+								if((int)(tmp.x/10+i)==(int)(x/10) && (int)(tmp.y/10+j)==(int)(y/10))
+								{
+									tmp.die();
+									//System.out.println("123456");
+									break;
+								}
+					}
+					//MainPanel.enemy.die();
+				}
+				else if(E==2)
+				{
+					MainPanel.main_role.hit(atk);
+				}
 			}
 		}
 		else if(MainPanel.map[(int)(x/10)][(int)(y/10)] == 3 || MainPanel.map[(int)(x/10)][(int)(y/10)] == 4)	//hit floor or obstacle
