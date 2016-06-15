@@ -243,17 +243,17 @@ public class WeaponPanel extends JPanel {
 	
 	public void refresh()
 	{
-		gun_available_label.setText(MainPanel.main_role.readyBullet.get(new Gun())+"");
-		gun_total_label.setText(MainPanel.main_role.totalBullet.get(new Gun())+"");
+		gun_available_label.setText(MainPanel.main_role.getReady("gun")+"");
+		gun_total_label.setText(MainPanel.main_role.getTotal("gun")+"");
 		gun_cost_label.setText(new Gun().getPrice()+"");
-		machine_available_label.setText(MainPanel.main_role.readyBullet.get(new MachineGun())+"");
-		machine_total_label.setText(MainPanel.main_role.totalBullet.get(new MachineGun())+"");
+		machine_available_label.setText(MainPanel.main_role.getReady("machinegun")+"");
+		machine_total_label.setText(MainPanel.main_role.getTotal("machinegun")+"");
 		machine_cost_label.setText(new MachineGun().getPrice()+"");
-		sniper_available_label.setText(MainPanel.main_role.readyBullet.get(new SniperRfile())+"");
-		sniper_total_label.setText(MainPanel.main_role.totalBullet.get(new SniperRfile())+"");
+		sniper_available_label.setText(MainPanel.main_role.getReady("sniperrfilegun")+"");
+		sniper_total_label.setText(MainPanel.main_role.getTotal("sniperrfilegun")+"");
 		sniper_cost_label.setText(new SniperRfile().getPrice()+"");
-		shot_available_label.setText(MainPanel.main_role.readyBullet.get(new ShotGun())+"");
-		shot_total_label.setText(MainPanel.main_role.totalBullet.get(new ShotGun())+"");
+		shot_available_label.setText(MainPanel.main_role.getReady("shotgun")+"");
+		shot_total_label.setText(MainPanel.main_role.getTotal("shotgun")+"");
 		shot_cost_label.setText(new ShotGun().getPrice()+"");
 		
 		money_s_label.setText(MainPanel.main_role.getMoney()+"");

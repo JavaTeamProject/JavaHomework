@@ -49,19 +49,19 @@ public class EventControl implements KeyListener,MouseListener,ActionListener{
 		switch(e.getActionCommand())
 		{
 		case "gun_button":
-			MainPanel.main_role.buyWeapon(new Gun());
+			MainPanel.main_role.buyWeapon("gun");
 		break;	
 		
 		case "machine_button":
-			MainPanel.main_role.buyWeapon(new MachineGun());
+			MainPanel.main_role.buyWeapon("machinegun");
 		break;	
 		
 		case "sniper_button":
-			MainPanel.main_role.buyWeapon(new SniperRfile());
+			MainPanel.main_role.buyWeapon("sniperrfile");
 		break;
 		
 		case "shot_button":
-			MainPanel.main_role.buyWeapon(new ShotGun());
+			MainPanel.main_role.buyWeapon("shotgun");
 		break;	
 		}
 		MiniCSLaunch.mainpanel.requestFocusInWindow();

@@ -83,6 +83,36 @@ public class MainRole extends MapElement{
 			die();
 		}
 	}
+	public int getReady(String weapon)
+	{
+		switch(weapon)
+		{
+		case "gun":
+			return readyBullet.get(gun);
+		case "machinegun":
+			return readyBullet.get(machinegun);
+		case "sniperrfilegun":
+			return readyBullet.get(sniperRfile);
+		case "shotgun":
+			return readyBullet.get(shotgun);
+		}
+		return 0;
+	}
+	public int getTotal(String weapon)
+	{
+		switch(weapon)
+		{
+		case "gun":
+			return totalBullet.get(gun);
+		case "machinegun":
+			return totalBullet.get(machinegun);
+		case "sniperrfilegun":
+			return totalBullet.get(sniperRfile);
+		case "shotgun":
+			return totalBullet.get(shotgun);
+		}
+		return 0;
+	}
 	public int getAtk()
 	{
 		return currentWeapon.getAtk();
@@ -148,8 +178,21 @@ public class MainRole extends MapElement{
 		}
 
 	}
-	public void buyWeapon(Weapon weapon)
+	public void buyWeapon(String weaponname)
 	{
+		Weapon weapon = null;
+		switch(weaponname)
+		{
+		case "gun":
+			weapon = gun;
+		case "machinegun":
+			weapon = machinegun;
+		case "sniperrfilegun":
+			weapon = sniperRfile;
+		case "shotgun":
+			weapon = shotgun;
+		}
+
 		if(totalBullet.containsKey(weapon))
 		{
 			int total = weapon.getClipAmount() + totalBullet.get(weapon);
