@@ -57,7 +57,7 @@ public class Bullet extends MapElement{
 							|| (int)(tmp.x/10)==(int)(x/10) && (int)(tmp.y/10-1)==(int)(y/10)
 							|| (int)(tmp.x/10)==(int)(x/10) && (int)(tmp.y/10)==(int)(y/10))
 					{
-						tmp.die();
+						tmp.hit(atk);
 						if(!(MainPanel.main_role.currentWeapon instanceof SniperRfile))
 						{
 							exist = 0;

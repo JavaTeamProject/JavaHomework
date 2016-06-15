@@ -91,7 +91,7 @@ public class MainRole extends MapElement{
 			return readyBullet.get(gun);
 		case "machinegun":
 			return readyBullet.get(machinegun);
-		case "sniperrfilegun":
+		case "sniperrfile":
 			return readyBullet.get(sniperRfile);
 		case "shotgun":
 			return readyBullet.get(shotgun);
@@ -106,7 +106,7 @@ public class MainRole extends MapElement{
 			return totalBullet.get(gun);
 		case "machinegun":
 			return totalBullet.get(machinegun);
-		case "sniperrfilegun":
+		case "sniperrfile":
 			return totalBullet.get(sniperRfile);
 		case "shotgun":
 			return totalBullet.get(shotgun);
@@ -185,12 +185,16 @@ public class MainRole extends MapElement{
 		{
 		case "gun":
 			weapon = gun;
+			break;
 		case "machinegun":
 			weapon = machinegun;
-		case "sniperrfilegun":
+			break;
+		case "sniperrfile":
 			weapon = sniperRfile;
+			break;
 		case "shotgun":
 			weapon = shotgun;
+			break;
 		}
 
 		if(totalBullet.containsKey(weapon))
@@ -256,8 +260,11 @@ public class MainRole extends MapElement{
 		g.setColor(Color.GREEN);
 		g.fillRect(x-14, y-41, hp*29/max_hp, 7);
 		
+		g.setColor(Color.RED);
 		if(reload!=0){
-			g.drawString("reload!", x-15, y-32);
+			g.fillRect(x-20, y-60, 45, 15);
+			g.setColor(Color.WHITE);
+			g.drawString("reload!", x-17, y-47);
 		}
 		edit_map(map_value);
 

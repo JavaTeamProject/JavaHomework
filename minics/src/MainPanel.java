@@ -171,6 +171,7 @@ public class MainPanel extends JPanel{
 				tmp.draw(g);
 		}
 		floor_hashset.removeAll(out_floor_hashset);	//
+		out_floor_hashset.clear();
 		
 		Iterator<Obstacle> itr1 = obstacle_hashset.iterator();	//
 		while(itr1.hasNext()){
@@ -181,6 +182,9 @@ public class MainPanel extends JPanel{
 				tmp.draw(g);
 		}
 		obstacle_hashset.removeAll(out_obstacle_hashset);	//
+		out_obstacle_hashset.clear();
+		
+		
 		
 		Iterator<Bullet> itr2 = bullet_hashset.iterator();	//
 		while(itr2.hasNext()){
@@ -191,6 +195,8 @@ public class MainPanel extends JPanel{
 				tmp.draw(g);
 		}
 		bullet_hashset.removeAll(out_bullet_hashset);	//
+		out_bullet_hashset.clear();
+		
 		
 		Iterator<Enemy> itr4 = enemy_hashset.iterator();	//
 		while(itr4.hasNext()){
@@ -201,6 +207,7 @@ public class MainPanel extends JPanel{
 				tmp.draw(g);
 		}
 		enemy_hashset.removeAll(out_enemy_hashset);	//
+		out_enemy_hashset.clear();
 		
 		main_role.draw(g);
 		

@@ -10,6 +10,7 @@ public class Enemy extends MapElement{
 	public Color color = Color.PINK;
 	public int x_shift;
 	public int y_shift;
+	public final int max_hp = 5;
 	public int hp;
 	public Weapon currentWeapon;
 	public HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
@@ -28,7 +29,7 @@ public class Enemy extends MapElement{
 		map_x_shift = 10;
 		
 		map_value = 2;
-		hp = 100;
+		hp = 5;
 		
 		exist = 1;
 		initWeapon();
@@ -49,7 +50,6 @@ public class Enemy extends MapElement{
 			exist = 0;
 		}	
 	}
-/*
 	public void hit(int atk)
 	{
 		hp = hp - atk;
@@ -58,7 +58,7 @@ public class Enemy extends MapElement{
 			die();
 		}
 	}
-	*/
+	
 	public int getAtk()
 	{
 		return currentWeapon.getAtk();
@@ -167,6 +167,13 @@ public class Enemy extends MapElement{
 			g.drawLine(x, y-8, x-7, y);
 			g.drawLine(x, y+1, x+7, y+9);
 			g.drawLine(x, y+1, x-7, y+9);
+			g.setColor(Color.DARK_GRAY);
+			g.drawRect(x-15, y-42, 30, 8);
+			g.setColor(Color.RED);
+			g.fillRect(x-14, y-41, 29, 7);
+			
+			g.setColor(Color.GREEN);
+			g.fillRect(x-14, y-41, hp*29/max_hp, 7);
 			
 			edit_map(map_value);
 		}

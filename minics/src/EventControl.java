@@ -28,15 +28,48 @@ public class EventControl implements KeyListener,MouseListener,ActionListener{
 			
 			case 49:
 				MainPanel.main_role.changeWeapon("gun");
+				MiniCSLaunch.weaponpanel.gun_button.setVisible(false);
+				MiniCSLaunch.weaponpanel.machine_button.setVisible(true);
+				MiniCSLaunch.weaponpanel.sniper_button.setVisible(true);
+				MiniCSLaunch.weaponpanel.shot_button.setVisible(true);
+				MiniCSLaunch.weaponpanel.gun_button_y.setVisible(true);
+				MiniCSLaunch.weaponpanel.machine_button_y.setVisible(false);
+				MiniCSLaunch.weaponpanel.sniper_button_y.setVisible(false);
+				MiniCSLaunch.weaponpanel.shot_button_y.setVisible(false);
+				
 				break;
 			case 50:
 				MainPanel.main_role.changeWeapon("machinegun");
+				MiniCSLaunch.weaponpanel.gun_button.setVisible(true);
+				MiniCSLaunch.weaponpanel.machine_button.setVisible(false);
+				MiniCSLaunch.weaponpanel.sniper_button.setVisible(true);
+				MiniCSLaunch.weaponpanel.shot_button.setVisible(true);
+				MiniCSLaunch.weaponpanel.gun_button_y.setVisible(false);
+				MiniCSLaunch.weaponpanel.machine_button_y.setVisible(true);
+				MiniCSLaunch.weaponpanel.sniper_button_y.setVisible(false);
+				MiniCSLaunch.weaponpanel.shot_button_y.setVisible(false);
 				break;
 			case 51:
-				MainPanel.main_role.changeWeapon("shotgun");
+				MainPanel.main_role.changeWeapon("sniperrfile");
+				MiniCSLaunch.weaponpanel.gun_button.setVisible(true);
+				MiniCSLaunch.weaponpanel.machine_button.setVisible(true);
+				MiniCSLaunch.weaponpanel.sniper_button.setVisible(false);
+				MiniCSLaunch.weaponpanel.shot_button.setVisible(true);
+				MiniCSLaunch.weaponpanel.gun_button_y.setVisible(false);
+				MiniCSLaunch.weaponpanel.machine_button_y.setVisible(false);
+				MiniCSLaunch.weaponpanel.sniper_button_y.setVisible(true);
+				MiniCSLaunch.weaponpanel.shot_button_y.setVisible(false);
 				break;
 			case 52:
-				MainPanel.main_role.changeWeapon("sniperrfile");
+				MainPanel.main_role.changeWeapon("shotgun");
+				MiniCSLaunch.weaponpanel.gun_button.setVisible(true);
+				MiniCSLaunch.weaponpanel.machine_button.setVisible(true);
+				MiniCSLaunch.weaponpanel.sniper_button.setVisible(true);
+				MiniCSLaunch.weaponpanel.shot_button.setVisible(false);
+				MiniCSLaunch.weaponpanel.gun_button_y.setVisible(false);
+				MiniCSLaunch.weaponpanel.machine_button_y.setVisible(false);
+				MiniCSLaunch.weaponpanel.sniper_button_y.setVisible(false);
+				MiniCSLaunch.weaponpanel.shot_button_y.setVisible(true);
 				break;
 			
 			default: break;

@@ -28,6 +28,15 @@ public class WeaponPanel extends JPanel {
 	final double ROLE_ATTR_S_WIDTH = MiniCSLaunch.WEAPONPANEL_WIDTH*0.9;
 	
 	
+	JButton gun_button;
+	JButton gun_button_y;
+	JButton machine_button;
+	JButton machine_button_y;
+	JButton sniper_button;
+	JButton sniper_button_y;
+	JButton shot_button;
+	JButton shot_button_y;
+	
 	
 	private JLabel gun_available_label;
 	private JLabel gun_total_label;
@@ -59,39 +68,81 @@ public class WeaponPanel extends JPanel {
 	{
 		// Gun
 	    ImageIcon icon5 = new ImageIcon("img/gun_button.png");
-	    JButton gun_button = new JButton(icon5);
+	    gun_button = new JButton(icon5);
 	    gun_button.setBounds((int)(MiniCSLaunch.WEAPONPANEL_WIDTH*0.24),(int)BUTTON_HIGHT,130,130);
 	    gun_button.addActionListener(new EventControl());
 	    gun_button.setActionCommand("gun_button");
+	    gun_button.setVisible(false);
 	    add(gun_button);
+	    
+	    ImageIcon icon15 = new ImageIcon("img/gun_button_y.png");
+	    gun_button_y = new JButton(icon15);
+	    gun_button_y.setBounds((int)(MiniCSLaunch.WEAPONPANEL_WIDTH*0.24),(int)BUTTON_HIGHT,130,130);
+	    gun_button_y.addActionListener(new EventControl());
+	    gun_button_y.setActionCommand("gun_button");
+	    gun_button_y.setVisible(true);
+	    add(gun_button_y);
 	    
 	    // MachineGun
 	    ImageIcon icon6 = new ImageIcon("img/machinegun_button.png");
-	    JButton machine_button = new JButton(icon6);
+	    machine_button = new JButton(icon6);
 	    machine_button.setBounds((int)(MiniCSLaunch.WEAPONPANEL_WIDTH*0.36),(int)BUTTON_HIGHT,132,132);
 	    machine_button.addActionListener(new EventControl());
 	    machine_button.setActionCommand("machine_button");
+	    machine_button.setVisible(true);
 	    add(machine_button);
+	    
+	    ImageIcon icon16 = new ImageIcon("img/machinegun_button_y.png");
+        machine_button_y = new JButton(icon16);
+        machine_button_y.setBounds((int)(MiniCSLaunch.WEAPONPANEL_WIDTH*0.36),(int)BUTTON_HIGHT,132,132);
+        machine_button_y.addActionListener(new EventControl());
+        machine_button_y.setActionCommand("machine_button");
+        machine_button_y.setVisible(false);
+        add(machine_button_y);
 	    
 	    // SniperRfile
 	    ImageIcon icon7 = new ImageIcon("img/sniper_button.png");
-	    JButton sniper_button = new JButton(icon7);
+	    sniper_button = new JButton(icon7);
 	    sniper_button.setBounds((int)(MiniCSLaunch.WEAPONPANEL_WIDTH*0.48),(int)BUTTON_HIGHT,130,130);
 	    sniper_button.addActionListener(new EventControl());
 	    sniper_button.setActionCommand("sniper_button");
+	    sniper_button.setVisible(true);
 	    add(sniper_button);
+	    
+	    ImageIcon icon17 = new ImageIcon("img/sniper_button_y.png");
+	    sniper_button_y = new JButton(icon17);
+	    sniper_button_y.setBounds((int)(MiniCSLaunch.WEAPONPANEL_WIDTH*0.48),(int)BUTTON_HIGHT,130,130);
+	    sniper_button_y.addActionListener(new EventControl());
+	    sniper_button_y.setActionCommand("sniper_button");
+	    sniper_button_y.setVisible(false);
+	    add(sniper_button_y);
+        
 	    
 	    // ShotGun
 	    ImageIcon icon8 = new ImageIcon("img/shotgun_button.png");
-	    JButton shot_button = new JButton(icon8);
+	    shot_button = new JButton(icon8);
 	    shot_button.setBounds((int)(MiniCSLaunch.WEAPONPANEL_WIDTH*0.6),(int)BUTTON_HIGHT,130,130);
 	    shot_button.addActionListener(new EventControl());
 	    shot_button.setActionCommand("shot_button");
+	    shot_button.setVisible(true);
 	    add(shot_button);
-	    
+        
+        ImageIcon icon18 = new ImageIcon("img/shotgun_button_y.png");
+	    shot_button_y = new JButton(icon18);
+	    shot_button_y.setBounds((int)(MiniCSLaunch.WEAPONPANEL_WIDTH*0.6),(int)BUTTON_HIGHT,130,130);
+	    shot_button_y.addActionListener(new EventControl());
+	    shot_button_y.setActionCommand("shot_button");
+	    shot_button_y.setVisible(false);
+	    add(shot_button_y);
 	}
 	public void initialLable()
 	{
+		// Weapon NO.
+		ImageIcon icon20 = new ImageIcon("img/Weapon_NO.png");
+	    JLabel weapon_no = new JLabel(icon20);
+	    weapon_no.setBounds((int)(MiniCSLaunch.WEAPONPANEL_WIDTH*0.01),(int)(MiniCSLaunch.WEAPONPANEL_HIGHT*0.05),200,150);
+	    add(weapon_no);
+		
 		// Weapon Attribute
 	    ImageIcon icon2 = new ImageIcon("img/available_label.png");
 	    JLabel available_label = new JLabel(icon2);
@@ -249,8 +300,8 @@ public class WeaponPanel extends JPanel {
 		machine_available_label.setText(MainPanel.main_role.getReady("machinegun")+"");
 		machine_total_label.setText(MainPanel.main_role.getTotal("machinegun")+"");
 		machine_cost_label.setText(new MachineGun().getPrice()+"");
-		sniper_available_label.setText(MainPanel.main_role.getReady("sniperrfilegun")+"");
-		sniper_total_label.setText(MainPanel.main_role.getTotal("sniperrfilegun")+"");
+		sniper_available_label.setText(MainPanel.main_role.getReady("sniperrfile")+"");
+		sniper_total_label.setText(MainPanel.main_role.getTotal("sniperrfile")+"");
 		sniper_cost_label.setText(new SniperRfile().getPrice()+"");
 		shot_available_label.setText(MainPanel.main_role.getReady("shotgun")+"");
 		shot_total_label.setText(MainPanel.main_role.getTotal("shotgun")+"");
