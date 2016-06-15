@@ -3,6 +3,7 @@ package minics;
 import java.util.*;
 import javax.swing.*;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.*;
@@ -164,72 +165,84 @@ public class WeaponPanel extends JPanel {
 		/////Gun
 		//	int gun_available = MainPanel.main_role.readyBullet.get(new Gun());
 	    gun_available_label = new JLabel("gunavailable");
-	    gun_available_label.setFont(new Font("Serif", Font.PLAIN, 12));
+	    gun_available_label.setFont(new Font("Verdana", Font.PLAIN, 16));
+	    gun_available_label.setForeground(Color.white);	    
 	    gun_available_label.setBounds((int)GUN_WIDTH,(int)AVAILABLE_HIGHT,100,20);
 	    add(gun_available_label); 
 	    
 	    //	int gun_total = MainPanel.main_role.totalBullet.get(new Gun());
 	    gun_total_label = new JLabel("gun_total");
-	    gun_total_label.setFont(new Font("Serif", Font.PLAIN, 12));
+	    gun_total_label.setFont(new Font("Verdana", Font.PLAIN, 16));
+	    gun_total_label.setForeground(Color.white);	    
 	    gun_total_label.setBounds((int)GUN_WIDTH,(int)TOTAL_HIGHT,100,20);
 	    add(gun_total_label);
 	    
 	    gun_cost_label = new JLabel("gun cost");
-	    gun_cost_label.setFont(new Font("Serif", Font.PLAIN, 12));
+	    gun_cost_label.setFont(new Font("Verdana", Font.PLAIN, 16));
+	    gun_cost_label.setForeground(Color.white);	    
 	    gun_cost_label.setBounds((int)GUN_WIDTH,(int)COST_HIGHT,100,20);
 	    add(gun_cost_label);
 	    
 	    /////MachineGun
 	    //	int machine_available = MainPanel.main_role.readyBullet.get(new MachineGun());
 	    machine_available_label = new JLabel("machine_available");
-	    machine_available_label.setFont(new Font("Serif", Font.PLAIN, 12));
+	    machine_available_label.setFont(new Font("Verdana", Font.PLAIN, 16));
+	    machine_available_label.setForeground(Color.white);	    
 	    machine_available_label.setBounds((int)MACHINE_WIDTH,(int)AVAILABLE_HIGHT,100,20);
 	    add(machine_available_label);
 	    
 	    //	int machine_total = MainPanel.main_role.totalBullet.get(new MachineGun());
 	    machine_total_label = new JLabel("machine_total");
-	    machine_total_label.setFont(new Font("Serif", Font.PLAIN, 12));
+	    machine_total_label.setFont(new Font("Verdana", Font.PLAIN, 16));
+	    machine_total_label.setForeground(Color.white);	    
 	    machine_total_label.setBounds((int)MACHINE_WIDTH,(int)TOTAL_HIGHT,100,20);
 	    add(machine_total_label);
 	    
 	    machine_cost_label = new JLabel("machine cost");
-	    machine_cost_label.setFont(new Font("Serif", Font.PLAIN, 12));
+	    machine_cost_label.setFont(new Font("Verdana", Font.PLAIN, 16));
+	    machine_cost_label.setForeground(Color.white);	    
 	    machine_cost_label.setBounds((int)MACHINE_WIDTH,(int)COST_HIGHT,100,20);
 	    add(machine_cost_label);
     
 	    /////SniperRfile
 	    //	int sniper_available = MainPanel.main_role.readyBullet.get(new SniperRfile());
 	    sniper_available_label = new JLabel("sniper_available");
-	    sniper_available_label.setFont(new Font("Serif", Font.PLAIN, 12));
+	    sniper_available_label.setFont(new Font("Verdana", Font.PLAIN, 16));
+	    sniper_available_label.setForeground(Color.white);	    
 	    sniper_available_label.setBounds((int)SNIPER_WIDTH,(int)AVAILABLE_HIGHT,100,20);
 	    add(sniper_available_label);
 	    
 	    //	int sniper_total = MainPanel.main_role.totalBullet.get(new SniperRfile());
 	    sniper_total_label = new JLabel("sniper_total");
-	    sniper_total_label.setFont(new Font("Serif", Font.PLAIN, 12));
+	    sniper_total_label.setFont(new Font("Verdana", Font.PLAIN, 16));
+	    sniper_total_label.setForeground(Color.white);	    
 	    sniper_total_label.setBounds((int)SNIPER_WIDTH,(int)TOTAL_HIGHT,100,20);
 	    add(sniper_total_label);
 	    
 	    sniper_cost_label = new JLabel("sniper cost");
-	    sniper_cost_label.setFont(new Font("Serif", Font.PLAIN, 12));
+	    sniper_cost_label.setFont(new Font("Verdana", Font.PLAIN, 16));
+	    sniper_cost_label.setForeground(Color.white);
 	    sniper_cost_label.setBounds((int)SNIPER_WIDTH,(int)COST_HIGHT,100,20);
 	    add(sniper_cost_label);
     
 	    ///// ShotGun
 	    //	int shot_available = MainPanel.main_role.readyBullet.get(new ShotGun());
 	    shot_available_label = new JLabel("shot_available");
-	    shot_available_label.setFont(new Font("Serif", Font.PLAIN, 12));
+	    shot_available_label.setFont(new Font("Verdana", Font.PLAIN, 16));
+	    shot_available_label.setForeground(Color.white);	    
 	    shot_available_label.setBounds((int)SHOT_WIDTH,(int)AVAILABLE_HIGHT,100,20);
 	    add(shot_available_label);
 	    
 	    //	int shot_total = MainPanel.main_role.totalBullet.get(new ShotGun());
 	    shot_total_label = new JLabel("shot_total");
-	    shot_total_label.setFont(new Font("Serif", Font.PLAIN, 12));
+	    shot_total_label.setFont(new Font("Verdana", Font.PLAIN, 16));
+	    shot_total_label.setForeground(Color.white);	    
 	    shot_total_label.setBounds((int)SHOT_WIDTH,(int)TOTAL_HIGHT,100,20);
 	    add(shot_total_label);
 	    
 	    shot_cost_label = new JLabel("shot cost");
-	    shot_cost_label.setFont(new Font("Serif", Font.PLAIN, 12));
+	    shot_cost_label.setFont(new Font("Verdana", Font.PLAIN, 16));
+	    shot_cost_label.setForeground(Color.white);	    
 	    shot_cost_label.setBounds((int)SHOT_WIDTH,(int)COST_HIGHT,100,20);
 	    add(shot_cost_label);
 	    
@@ -244,8 +257,9 @@ public class WeaponPanel extends JPanel {
 	    int money = MainPanel.main_role.getMoney();
 	    
 	    money_s_label = new JLabel(money+"");
-	    money_s_label.setFont(new Font("Serif", Font.PLAIN, 12));
-	    money_s_label.setBounds((int)ROLE_ATTR_S_WIDTH,20,100,20);
+	    money_s_label.setFont(new Font("Verdana", Font.BOLD, 28));
+	    money_s_label.setForeground(Color.yellow);
+	    money_s_label.setBounds((int)ROLE_ATTR_S_WIDTH,20,100,30);
 	    add(money_s_label);
 	    //ko
 	    ImageIcon icon11 = new ImageIcon("img/ko_label.png");
@@ -256,7 +270,8 @@ public class WeaponPanel extends JPanel {
 	    int ko = MainPanel.main_role.getKill();
 	    
 	    ko_s_label = new JLabel(ko+"");
-	    ko_s_label.setFont(new Font("Serif", Font.PLAIN, 12));
+	    ko_s_label.setFont(new Font("Verdana", Font.BOLD, 20));
+	    ko_s_label.setForeground(Color.white);
 	    ko_s_label.setBounds((int)ROLE_ATTR_S_WIDTH,100,100,20);
 	    add(ko_s_label);
 	    //distance
@@ -268,7 +283,8 @@ public class WeaponPanel extends JPanel {
 	    int distance = MainPanel.main_role.getDistance();
 	    
 	    distance_s_label = new JLabel(distance+"");
-	    distance_s_label.setFont(new Font("Serif", Font.PLAIN, 12));
+	    distance_s_label.setFont(new Font("Verdana", Font.BOLD, 20));
+	    distance_s_label.setForeground(Color.white);
 	    distance_s_label.setBounds((int)ROLE_ATTR_S_WIDTH,120,100,20);
 	    add(distance_s_label);
 	    
