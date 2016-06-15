@@ -1,18 +1,11 @@
 package minics;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import javax.swing.*;
 import java.awt.Graphics;
-import java.util.*;
 import java.io.*;
 import java.awt.*;
-import java.awt.event.*;
 import javax.imageio.*;
-
 public class GameOverPanel extends JPanel{
 	public Image image;
-	public Vector<String> gameover = new Vector();
 	
 	public GameOverPanel()
 	{
@@ -21,34 +14,13 @@ public class GameOverPanel extends JPanel{
 			setFocusable(true);
 	}
 	
-	public Vector readFile(String fileName) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader(fileName));
-		try {
-			Vector sb = new Vector(19);
-			String line = br.readLine();
-
-			while (line != null) {
-				sb.add(line);
-				line = br.readLine();
-			}
-			return sb;
-		}
-		finally {
-			br.close();
-		}
-	}
-	public void Die() {
-		try {
-			gameover = readFile("txt/gameovertext.tst");
-		}
-		catch(Exception ex) {
-			System.out.println("GGININDER");
-		}
-	}
 	public void paint(Graphics g) {
 		super.paint(g);
 		int h = 0;
 		int w = 0;
+		String resmoney = "Your Money ";
+		String resdistance = "You have walked ";
+		String killenemy = "You have killed ";
 		try {
 			image = ImageIO.read(new File("img/gameover.jpg"));
 			h = image.getHeight(null);
@@ -58,7 +30,11 @@ public class GameOverPanel extends JPanel{
             System.out.println("No example.jpg!!");
         }
 		double scale = 1.5;
-		g.drawImage(image, 0, 0, (int)(w*scale), (int)(h*scale), null);
+		g.setFont(new Font("TimesRoman", Font.PLAIN, 40));
+		g.drawImage(image, 200, 100, (int)(w*scale), (int)(h*scale), null);
+		g.drawString(resmoney + MiniCSLaunch.mainpanel.main_role.getMoney() + " dollars", 200, 100 +(int)(h*scale) + 40);
+		g.drawString(resdistance + MiniCSLaunch.mainpanel.main_role.getDistance() + " meters", 200, 100 +(int)(h*scale) + 80);
+		g.drawString(killenemy + MiniCSLaunch.mainpanel.main_role.getKill() + " enemies", 200, 100 +(int)(h*scale) + 120);
 	}
 	
 }
