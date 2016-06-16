@@ -99,7 +99,7 @@ public class Enemy extends MapElement{
 	public void die()
 	{
 		MainPanel.main_role.setKill(1);
-		MainPanel.main_role.setMoney(100);
+		MainPanel.main_role.setMoney(0,100);
 		die = 1 ;
 		/*edit_map(0);
 		exist = 0;*/

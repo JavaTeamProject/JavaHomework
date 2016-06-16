@@ -113,7 +113,7 @@ public class MainPanel extends JPanel{
 	{
 		map_go_length++;
 		main_role.setDistance(1);
-		MainPanel.main_role.setMoney(1);
+		MainPanel.main_role.setMoney(0,1);
 		
 		Iterator<Floor> itr0 = floor_hashset.iterator();	//
 		while(itr0.hasNext()){

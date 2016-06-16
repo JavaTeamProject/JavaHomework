@@ -46,34 +46,48 @@ public class MainRole extends MapElement{
 		currentWeapon = gun;
 		readyBullet.put(currentWeapon,currentWeapon.getClipAmount());
 		totalBullet.put(currentWeapon,99999);
-		readyBullet.put(shotgun,0);
-		totalBullet.put(shotgun,200);
 		readyBullet.put(machinegun,0);
 		totalBullet.put(machinegun,0);
+		readyBullet.put(shotgun,0);
+		totalBullet.put(shotgun,0);
 		readyBullet.put(sniperRfile,0);
-		totalBullet.put(sniperRfile,200);
+		totalBullet.put(sniperRfile,0);
 	}
 	public void moveLeft()
 	{
 	}
-	public void changeWeapon(String weapon)
+	public void changeWeapon(String weaponname)
 	{
-		if(weapon.equals("gun"))
-		{
-			currentWeapon = gun;
-	    }
-		else if(weapon.equals("shotgun"))
-		{
-			currentWeapon = shotgun;
-	    }
-		else if(weapon.equals("machinegun"))
-		{
-			currentWeapon = machinegun;
+		switch(weaponname){
+			case "gun":
+				currentWeapon = gun;
+				if(readyBullet.get(gun)<=0 && totalBullet.get(gun)>0)
+				{
+					readyBullet.put(gun,gun.getClipAmount());	
+				}
+				break;
+			case "machinegun":
+				currentWeapon = machinegun;
+				if(readyBullet.get(machinegun)<=0 && totalBullet.get(machinegun)>0)
+				{
+					readyBullet.put(machinegun,machinegun.getClipAmount());	
+				}
+				break;
+			case "shotgun":
+				currentWeapon = shotgun;
+				if(readyBullet.get(shotgun)<=0 && totalBullet.get(shotgun)>0)
+				{
+					readyBullet.put(shotgun,shotgun.getClipAmount());	
+				}
+				break;
+			case "sniperrfile":
+				currentWeapon = sniperRfile;
+				if(readyBullet.get(sniperRfile)<=0 && totalBullet.get(sniperRfile)>0)
+				{
+					readyBullet.put(sniperRfile,sniperRfile.getClipAmount());	
+				}
+				break;
 		}
-		else if(weapon.equals("sniperrfile"))
-		{
-			currentWeapon = sniperRfile;
-	    }
 	}	
 	public void hit(int atk)
 	{
@@ -117,9 +131,16 @@ public class MainRole extends MapElement{
 	{
 		return currentWeapon.getAtk();
 	}
-	public void setMoney(int add)
+	public void setMoney(int type,int add)
 	{
-		money += add;
+		switch(type){
+			case 0:
+				money += add;
+				break;
+			case 1:
+				money -= add;
+				break;
+		}
 	}
 	public void setDistance(int add)
 	{
@@ -184,30 +205,41 @@ public class MainRole extends MapElement{
 		switch(weaponname)
 		{
 		case "gun":
-			weapon = gun;
+			if(money>=gun.getPrice())
+			{
+				weapon = gun;
+				setMoney(1,gun.getPrice());
+			}	
 			break;
 		case "machinegun":
-			weapon = machinegun;
+			if(money>=machinegun.getPrice())
+			{
+				weapon = machinegun;
+				setMoney(1,machinegun.getPrice());
+			}
 			break;
 		case "sniperrfile":
-			weapon = sniperRfile;
+			if(money>=sniperRfile.getPrice())
+			{
+				weapon = sniperRfile;
+				setMoney(1,sniperRfile.getPrice());
+			}
 			break;
 		case "shotgun":
-			weapon = shotgun;
+			if(money>=shotgun.getPrice())
+			{
+				weapon = shotgun;
+				setMoney(1,shotgun.getPrice());
+			}
 			break;
 		}
 
 		if(totalBullet.containsKey(weapon))
 		{
 			int total = weapon.getClipAmount() + totalBullet.get(weapon);
-			//readyBullet.put(weapon,bulletAmount);
 			totalBullet.put(weapon,total);
 		}
-		else
-		{
-			readyBullet.put(weapon,weapon.getClipAmount());
-			totalBullet.put(weapon,weapon.getClipAmount());
-		}
+
 	}
 	public void die() //override @ mainRole & enemy
 	{
