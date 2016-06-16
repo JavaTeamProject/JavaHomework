@@ -58,8 +58,6 @@ public class WeaponPanel extends JPanel {
 	
 	
 	public WeaponPanel() {
-
-		//initialThread();
 		initialButton();
 		initialLable();
 	    setLayout(null);
@@ -159,8 +157,6 @@ public class WeaponPanel extends JPanel {
 	    JLabel cost_label = new JLabel(icon4);
 	    cost_label.setBounds((int)WEAPON_ATTR_WIDTH,(int)COST_HIGHT,100,20);
 	    add(cost_label);
-		
-		
 		
 		/////Gun
 		//	int gun_available = MainPanel.main_role.readyBullet.get(new Gun());
@@ -287,18 +283,6 @@ public class WeaponPanel extends JPanel {
 	    distance_s_label.setForeground(Color.white);
 	    distance_s_label.setBounds((int)ROLE_ATTR_S_WIDTH,120,100,20);
 	    add(distance_s_label);
-	    
-	    /*   
-	    ImageIcon icon13 = new ImageIcon("img/time_label.png");
-	    JLabel time_label = new JLabel(icon13);
-	    time_label.setBounds((int)ROLE_ATTR_WIDTH,140,170,20);
-	    add(time_label);
-	    
-	    JLabel time_s_label = new JLabel("time_label");
-	    time_s_label.setFont(new Font("Serif", Font.PLAIN, 12));
-	    time_s_label.setBounds((int)ROLE_ATTR_S_WIDTH,140,100,20);
-	    add(time_s_label);
-	    */
 	    
 	    //background
 	    ImageIcon icon1 = new ImageIcon("img/bg.png");

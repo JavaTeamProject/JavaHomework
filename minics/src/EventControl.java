@@ -10,9 +10,9 @@ import java.awt.event.MouseListener;
 public class EventControl implements KeyListener,MouseListener,ActionListener{
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()){
-			case KeyEvent.VK_DOWN:
+			/*case KeyEvent.VK_DOWN:
 				MainPanel.main_role.moveVertical(true);
-				break;
+				break;*/
 			/*case KeyEvent.VK_UP:
 				MainPanel.main_role.moveVertical(false);
 				break;*/
@@ -117,18 +117,6 @@ public class EventControl implements KeyListener,MouseListener,ActionListener{
         {
         	MainPanel.main_role.reload();
         }
-		//System.out.println(bullet_hashset.size());
-		
-		//point_hashset.add(new Point(event.getX(), event.getY()));
-		/*System.out.println("-----------------------------------------------------");
-		for(int i = 0;i<MainPanel.MAP_HIGHT;i++)
-		{
-			for(int j = 0; j<MainPanel.MAP_WIDTH ; j++)
-			{
-				System.out.print(MainPanel.map[j][i]);
-			}
-			System.out.println();
-		}*/
 	}
 
 	public void mouseReleased(MouseEvent event){}

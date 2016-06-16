@@ -20,7 +20,6 @@ public class MainPanel extends JPanel{
 	public static int level;
 	public static long map_go_length;
 	public static MainRole main_role;
-	//public static Enemy enemy;
 	public static HashSet<Enemy> enemy_hashset = new HashSet<Enemy>();
 	public static HashSet<Enemy> out_enemy_hashset = new HashSet<Enemy>();
 	public static HashSet<Bullet> bullet_hashset = new HashSet<Bullet>();	
@@ -31,15 +30,12 @@ public class MainPanel extends JPanel{
 	public static HashSet<Floor> out_floor_hashset = new HashSet<Floor>();
 	
 	public MainPanel() {
-		
 		initialEvent();
 		initialMap();
 		initialHashSet();
 		initialThread();
-		
 	}
 	
-
 	public void initialEvent()
 	{
 		addKeyListener(new EventControl());
@@ -55,9 +51,7 @@ public class MainPanel extends JPanel{
 			for(int j = 0; j<MAP_HIGHT ; j++)
 			{
 				map[i][j] = 0;
-				//System.out.print(map[i][j]);
 			}
-			System.out.println();
 		}
 	}
 	
@@ -66,20 +60,15 @@ public class MainPanel extends JPanel{
 		initialFloor();
 		initialObstacle();
 		initialMainRole();
-		/*initialEnemy();
-		initialEnemy();*/
 	}
 	public void initialThread()
 	{
 		Thread paintThread = new PaintThread(this);
 	    paintThread.start();
-	    Thread bulletThread = new BulletThread();
-	    bulletThread.start();
 	    Thread enemyCreateThread = new EnemyCreateThread();
 	    enemyCreateThread.start();
 	    Thread enemyActionThread = new EnemyActionThread();
 	    enemyActionThread.start();
-	    
 	}
 	public void initialFloor()
 	{
@@ -94,7 +83,6 @@ public class MainPanel extends JPanel{
 		for(int i=200; i<MiniCSLaunch.MAINPANEL_WIDTH ; i+=20)
 		{
 			level += (int)(Math.random()*3)-1;
-			//System.out.println(level);
 			level = (level==-1)?0:level;
 			level = (level==7)?6:level;
 			for(int j=0 ; j<level*10 ; j+=10)
@@ -130,13 +118,6 @@ public class MainPanel extends JPanel{
 			itr2.next().moveLeft();
 		}
 		
-		/*Iterator<People> itr3 = people_hashset.iterator();	//
-		while(itr3.hasNext()){
-			People tmp = itr3.next();
-			if(tmp.map_value !=1)
-				tmp.moveLeft();
-		}*/
-		
 		Iterator<Enemy> itr4 = enemy_hashset.iterator();
 		while(itr4.hasNext()){
 			itr4.next().moveLeft();
@@ -149,7 +130,6 @@ public class MainPanel extends JPanel{
 		{
 			
 			level += (int)(Math.random()*3)-1;
-			//System.out.println(level);
 			level = (level==-1)?0:level;
 			level = (level==7)?6:level;
 			for(int j=0 ; j<level*10 ; j+=10)
@@ -162,7 +142,8 @@ public class MainPanel extends JPanel{
 	public void paint(Graphics g){
 		super.paint(g);
 		
-		Iterator<Floor> itr0 = floor_hashset.iterator();	//
+		//draw floor
+		Iterator<Floor> itr0 = floor_hashset.iterator();
 		while(itr0.hasNext()){
 			Floor tmp = itr0.next();
 			if(tmp.exist == 0)
@@ -173,6 +154,7 @@ public class MainPanel extends JPanel{
 		floor_hashset.removeAll(out_floor_hashset);	//
 		out_floor_hashset.clear();
 		
+		//draw obstacle
 		Iterator<Obstacle> itr1 = obstacle_hashset.iterator();	//
 		while(itr1.hasNext()){
 			Obstacle tmp = itr1.next();
@@ -184,20 +166,22 @@ public class MainPanel extends JPanel{
 		obstacle_hashset.removeAll(out_obstacle_hashset);	//
 		out_obstacle_hashset.clear();
 		
-		
-		
+		//draw bullet
 		Iterator<Bullet> itr2 = bullet_hashset.iterator();	//
 		while(itr2.hasNext()){
 			Bullet tmp = itr2.next();
 			if(tmp.exist == 0)
 				out_bullet_hashset.add(tmp);
 			else
+			{
+				tmp.fly();
 				tmp.draw(g);
+			}
 		}
 		bullet_hashset.removeAll(out_bullet_hashset);	//
 		out_bullet_hashset.clear();
 		
-		
+		//draw enemy
 		Iterator<Enemy> itr4 = enemy_hashset.iterator();	//
 		while(itr4.hasNext()){
 			Enemy tmp = itr4.next();
@@ -209,9 +193,7 @@ public class MainPanel extends JPanel{
 		enemy_hashset.removeAll(out_enemy_hashset);	//
 		out_enemy_hashset.clear();
 		
+		//draw main role
 		main_role.draw(g);
-		
 	}
-
-	
 }

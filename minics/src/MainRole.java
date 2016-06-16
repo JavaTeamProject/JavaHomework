@@ -17,7 +17,7 @@ public class MainRole extends MapElement{
 	public HashMap<Weapon, Integer> readyBullet = new HashMap<Weapon, Integer>();
 	public HashMap<Weapon, Integer> totalBullet = new HashMap<Weapon, Integer>();
 
-	public int money = 0;
+	public int money = 10000;
 	public int kill = 0;
 	public int distance = 0;
 	private int reload;

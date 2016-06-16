@@ -16,24 +16,16 @@ public class MiniCSLaunch{
 	public static final double WEAPONPANEL_WIDTH = FRAME_WIDTH;
 	public static final double WEAPONPANEL_HIGHT = FRAME_HIGHT*0.3;
 	
-	
-	
 	public static MainPanel mainpanel = new MainPanel();
 	public static WeaponPanel weaponpanel = new WeaponPanel();
 	public static GameOverPanel gameoverpanel = new GameOverPanel();
 	public static JFrame frame;
 	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args)
+	{
 		initialFrame();
 		initialPanel();
 		frame.setVisible(true);
-//		System.out.println(MainRole.isDie);
-//		if (!MainRole.isDie) {
-//			//mainpanel.setVisible(false);
-//			gameoverpanel.setVisible(true);
-//		}
-		
 	}
 
 	public static void initialFrame()
@@ -48,7 +40,6 @@ public class MiniCSLaunch{
 	
 	public static void initialPanel()
 	{
-		//frame.add(gameoverpanel);
 		mainpanel.setSize((int)MAINPANEL_WIDTH,(int) MAINPANEL_HIGHT);
 		mainpanel.setLocation(0,0);
 		frame.add(mainpanel);	
